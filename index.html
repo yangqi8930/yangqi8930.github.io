@@ -89,16 +89,17 @@
         <h1 id="Hexo-github-部署搭建个人博客-IOS系统"><a href="#Hexo-github-部署搭建个人博客-IOS系统" class="headerlink" title="Hexo+github 部署搭建个人博客(IOS系统)"></a>Hexo+github 部署搭建个人博客(IOS系统)</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
 <li>电脑（Mac）</li>
 <li>电脑上安装Node.js和git（由于Mac电脑自带Git，因此无需另外w安装。<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js下载地址</a>)</li>
-<li>检查Node.js和Git是否安装成功：<br>‘’’<br>node -v<br>git version<br>‘’’<br><img src="/images/check_version.png" alt=""><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2>‘’’$ npm install -g hexo-cli’’’<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2>‘’’<br>$ hexo init <folder><br>$ cd <folder><br>$ npm install<br>‘’’<h2 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h2>配置根目录_config.yml有关deploy的部分：<br>‘’’<br>deploy:<br>type: git<br>repository: <a href="mailto:git@github.com">git@github.com</a>:yangqi8930/yangqi8930.github.io.git<br>branch: master<br>‘’’<h2 id="安装deploy插件"><a href="#安装deploy插件" class="headerlink" title="安装deploy插件"></a>安装deploy插件</h2>‘’’npm install hexo-deployer-git –save’’’<h2 id="配置Github"><a href="#配置Github" class="headerlink" title="配置Github"></a>配置Github</h2></li>
+<li>检查Node.js和Git是否安装成功：<br>‘’’<br>node -v<br>git version<br>‘’’<br><img src="/images/check_version.png" alt=""><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2>‘’’$ npm install -g hexo-cli’’’<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2>‘’’<br>$ hexo init <folder><br>$ cd <folder><br>$ npm install<br>‘’’<h2 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h2>配置根目录_config.yml有关deploy的部分：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repository: git@github.com:yangqi8930&#x2F;yangqi8930.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h2 id="安装deploy插件"><a href="#安装deploy插件" class="headerlink" title="安装deploy插件"></a>安装deploy插件</h2><code>npm install hexo-deployer-git --save</code><h2 id="配置Github"><a href="#配置Github" class="headerlink" title="配置Github"></a>配置Github</h2></li>
 <li>创建一个自己的github账号</li>
 <li>新建一个仓库：仓库名设置为：username.github.io</li>
-<li>配置ssh：’’’ssh-keygen -t rsa -C “邮件地址”‘’’。连续三次回车，然后打开用户目录，找到.ssh\id_rsa.pub文件，将里面的密码复制，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，title随便填，保存。<h2 id="使用Hexo写博客"><a href="#使用Hexo写博客" class="headerlink" title="使用Hexo写博客"></a>使用Hexo写博客</h2>‘’’hexo init test # 新建一个test文件夹，生成一些必须的静态文件’’’<br>‘’’hexo g #生成网站文件’’’<br>‘’’hexo s #启动服务’’’<br>‘’’hexo d #上传到github’’’<br>然后打开网址：<a href="https://yangqi8930.github.io/就可以看到自己的博客啦" target="_blank" rel="noopener">https://yangqi8930.github.io/就可以看到自己的博客啦</a></li>
+<li>配置ssh：<code>ssh-keygen -t rsa -C</code> “邮件地址”‘’’。连续三次回车，然后打开用户目录，找到.ssh\id_rsa.pub文件，将里面的密码复制，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，title随便填，保存。<h2 id="使用Hexo写博客"><a href="#使用Hexo写博客" class="headerlink" title="使用Hexo写博客"></a>使用Hexo写博客</h2><code>hexo init test # 新建一个test文件夹，生成一些必须的静态文件</code><br><code>hexo g #生成网站文件</code><br><code>hexo s #启动服务</code><br><code>hexo d #上传到github</code><br>然后打开网址：<a href="https://yangqi8930.github.io/" target="_blank" rel="noopener"></a>就可以看到自己的博客啦</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/12/hexo-setup/" data-id="ck6j2jtae0000g5xedmp9a5y7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/12/hexo-setup/" data-id="ck6j2r9r80000i4xecc2fe9h8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -147,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/12/hello-world/" data-id="ck6j2jtam0001g5xe4v39a1ix" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/12/hello-world/" data-id="ck6j2r9rc0001i4xeah5c70r4" class="article-share-link">Share</a>
       
       
     </footer>
