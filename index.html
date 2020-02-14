@@ -65,6 +65,75 @@
     
     
     
+    <article id="post-python-day2" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/14/python-day2/"
+    >python_day2（接上）</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/14/python-day2/" class="article-date">
+  <time datetime="2020-02-14T13:32:43.000Z" itemprop="datePublished">2020-02-14</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Python-数据类型总结（二）"><a href="#Python-数据类型总结（二）" class="headerlink" title="Python 数据类型总结（二）"></a>Python 数据类型总结（二）</h1>
+      
+      <a class="article-more-link" href="/2020/02/14/python-day2/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-python-day1" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -104,43 +173,10 @@
       
 
       
-      <a id="more"></a>
-<h1 id="Python-数据类型总结"><a href="#Python-数据类型总结" class="headerlink" title="Python 数据类型总结"></a>Python 数据类型总结</h1><h2 id="数值型"><a href="#数值型" class="headerlink" title="数值型"></a>数值型</h2><ol>
-<li>int: 整型（eg : 0，1，-1）</li>
-<li>float: 浮点型（eg : 1.2，3.0，-0.1）</li>
-<li>bool: 逻辑对象（eg : true ,false）</li>
-</ol>
-<h2 id="容器型："><a href="#容器型：" class="headerlink" title="容器型："></a>容器型：</h2><ol>
-<li>list 型：</li>
-</ol>
-<p><strong>创建</strong>：使用一对中括号[ ]，创建list对象：<code>list = [1,3,5] #list 对象</code><br><strong>访问</strong>：list对象为一个有序集合对象，使用索引进行访问，例如：L[0] 代表访问list的第一个元素；也可以使用倒序访问，例如：L[-1] 代表倒数第一个元素，依次类推。<br><strong>添加</strong>：<br><code>list.append() #追加新元素到list末尾</code>;<br><code>list.inser(location,value) #location 代表插入的位置，value代表要插入的值</code>，<br>例如：<br>list.insert(1,’Mario’)将’Mario’插入list第二个位置，原来第二个位置的元素依次向后移动一位。<br><strong>删除</strong>：<br><code>list.pop() #删掉list的最后一个元素</code><br>或者已知一个元素的位置：<code>list.pop(1) #删掉索引为1的元素</code></p>
-<ol start="2">
-<li>tuple 型：</li>
-</ol>
-<p><strong>创建</strong>：使用一对括号( )，创建一个tuple对象：<code>tup = (1,3,5) #tuple 对象</code>。注意：单元素tuple的创建方法为：<code>t=(1,)</code>，多加一个逗号’,’。<br><strong>访问</strong>：与list一样：t[0],t[-1]。注意：tuple一旦创建完成，不可更改。</p>
-<ol start="3">
-<li>dict 型：</li>
-</ol>
-<p><strong>创建</strong>：使用一对花括号{}和冒号:，创建一个dict对象：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#39;a&#39;:1,</span><br><span class="line">&#39;b&#39;:3,</span><br><span class="line">&#39;c&#39;:5</span><br><span class="line">&#125; #dict 对象</span><br></pre></td></tr></table></figure>
-<p><strong>访问</strong>：使用d[key]k来获取对应的value。也可以使用d.get()方法来访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print d.get(&#39;david&#39;)</span><br><span class="line">59</span><br><span class="line">print d.get(&#39;Mario&#39;)</span><br><span class="line">None # Mario不存在则返回None</span><br></pre></td></tr></table></figure>
-<p><strong>更新</strong>：<br>使用赋值语句：<code>d[key] = value</code>即可。<br><strong>遍历dict</strong>：<br>使用for 循环可以遍历 dict 的 key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">d &#x3D; &#123;</span><br><span class="line">&#39;adam&#39;:95,</span><br><span class="line">&#39;bart&#39;:89,</span><br><span class="line">&#39;lisa&#39;:75</span><br><span class="line">&#125;</span><br><span class="line">for key in d:</span><br><span class="line">    print key</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">adam</span><br><span class="line">bart</span><br><span class="line">lisa</span><br></pre></td></tr></table></figure>
-<p><strong>特点</strong>：<br>·查找速度快；<br>· key-value序对无序；<br>· 作为key的元素不可变：例如：字符串，整数，浮点数，但是List可变，不能作为key。</p>
-<ol start="4">
-<li>set 型：</li>
-</ol>
-<p><strong>创建</strong>：使用一对花括号{ }，创建一个set对象：<code>s = {1,3,5} #set 对象：集合变量</code><br><strong>访问</strong>：访问set中的某个元素相当于判断该元素是否在set中，用 in 访问：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#39;Bart in s&#39;</span><br><span class="line">&gt;&gt;&gt; True</span><br></pre></td></tr></table></figure>
-<p>返回True或者False<br><strong>遍历</strong>：<br>直接使用for 循环可以遍历set 的元素：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;s &#x3D; ([&#39;adam&#39;,&#39;lisa&#39;,&#39;bart&#39;])</span><br><span class="line">&gt;&gt;&gt;for name in s:</span><br><span class="line">    print name</span><br><span class="line">adam</span><br><span class="line">lisa</span><br><span class="line">bart</span><br></pre></td></tr></table></figure>
-<p><strong>更新</strong>：</p>
-<ol>
-<li>添加：<br><code>s.add()</code></li>
-<li>删除：<br><code>s.remove()</code></li>
-</ol>
-
+      <h1 id="Python-数据类型总结（一）"><a href="#Python-数据类型总结（一）" class="headerlink" title="Python 数据类型总结（一）"></a>Python 数据类型总结（一）</h1>
+      
+      <a class="article-more-link" href="/2020/02/13/python-day1/">阅读更多...</a>
+      
       
       <!-- reward -->
       
