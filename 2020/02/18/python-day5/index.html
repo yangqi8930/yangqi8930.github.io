@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    python_day4 |  SuperMario
+    python_day5 |  SuperMario
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-python-day4" class="article article-type-post" itemscope
+  <article id="post-python-day5" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  python_day4
+  python_day5
 </h1>
   
 
@@ -48,8 +48,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/16/python-day4/" class="article-date">
-  <time datetime="2020-02-16T08:54:11.000Z" itemprop="datePublished">2020-02-16</time>
+      <a href="/2020/02/18/python-day5/" class="article-date">
+  <time datetime="2020-02-18T08:25:00.000Z" itemprop="datePublished">2020-02-18</time>
 </a>
       
   <div class="article-category">
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">312字</span>
+            <span class="post-count">908字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -99,20 +99,29 @@
       
 
       
-      <h1 id="Python-的一些杂记"><a href="#Python-的一些杂记" class="headerlink" title="Python 的一些杂记"></a>Python 的一些杂记</h1><a id="more"></a>
-<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><h3 id="用迭代生成列表"><a href="#用迭代生成列表" class="headerlink" title="用迭代生成列表"></a>用迭代生成列表</h3><p>如何生成一个[1<em>1, 2</em>2,3<em>3,…,n</em>n]的列表？<br>方法一：使用for循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L &#x3D; []</span><br><span class="line">for i in range(1,n)</span><br><span class="line">L.append(i**)</span><br><span class="line">print L</span><br></pre></td></tr></table></figure>
-<p>方法二：列表生成式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[i*i for i in range(1,n)]</span><br><span class="line"># 使用列表生成式时，把要生成的元素 i*i 放在前面，后面跟 for 循环，就可以把 list 创建出来</span><br></pre></td></tr></table></figure>
-<h2 id="字符串的连接"><a href="#字符串的连接" class="headerlink" title="字符串的连接"></a>字符串的连接</h2><ol>
-<li>加号连接：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print &#39;python&#39;+&#39;tab&#39;</span><br><span class="line">pythontab</span><br></pre></td></tr></table></figure></li>
-<li>逗号连接：<br>逗号连接比较特殊，使用逗号连接两个字符串，如果两个字符串用‘逗号’隔开，那么这两个字符串将被连接，但是字符串之间会多处一个空格。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print &#39;python&#39;，&#39;tab&#39;</span><br><span class="line">python tab</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>直接连接：<br>这是python独有的，只要把两个字符串放在一起，中间有空白或者没有空白，这两个字符串将自动连接为一个字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print &#39;python&#39;&#39;tab&#39;</span><br><span class="line">pythontab</span><br><span class="line">print &#39;python&#39;  &#39;tab&#39;</span><br><span class="line">pythontab</span><br></pre></td></tr></table></figure></li>
-<li>格式化：<br>借鉴了C语言中的printf函数的功能。用符号’%’连接一个字符串和z一组变量，字符串的r特殊标记会自动被右边变量组中的变量替换：<br>print ‘’</li>
-</ol>
-</li>
-</ol>
+      <h1 id="关于list-和-tuple-的-13-个经典使用案例"><a href="#关于list-和-tuple-的-13-个经典使用案例" class="headerlink" title="关于list 和 tuple 的 13 个经典使用案例"></a>关于list 和 tuple 的 13 个经典使用案例</h1><a id="more"></a>
+
+<h1 id="1-计算频次最高的元素"><a href="#1-计算频次最高的元素" class="headerlink" title="1. 计算频次最高的元素"></a>1. 计算频次最高的元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def max_frequency(lst):</span><br><span class="line">    return max(lst, key &#x3D; lambda v : lst.count(v)) # key代表一种比较的方法 ，用lambda定义了一个函数，用于计算lst中每个元素出现的次数</span><br><span class="line">lst &#x3D; [1, 3, 3, 2, 1, 1, 2]</span><br><span class="line">r &#x3D; max_frequency(lst)</span><br><span class="line">print(1,f&#39;&#123;lst&#125;中出现次数最多的元素为:&#123;r&#125;&#39;)</span><br></pre></td></tr></table></figure>
+<p>附：max 函数解析：python中 max函数可以输入一个参数,也可以输入两个参数。 如果是一个参数，这个参数必须是可迭代的,max会for i in … 遍历一遍这个迭代器函数会返回其最大值,也可以给出key参数,这样函数会把第一个参数的每个值依次放入key提供的比较大小的方法里(常常是一个函数)求出最大值.</p>
+<h1 id="2-判断list内有无元素重复"><a href="#2-判断list内有无元素重复" class="headerlink" title="2. 判断list内有无元素重复"></a>2. 判断list内有无元素重复</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def is_repeated(lst):</span><br><span class="line">    for v in lst:</span><br><span class="line">        if lst.count(v) &gt; 1:</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br><span class="line">lst &#x3D; [1,2,3,4,6,1]</span><br><span class="line">print(2,is_repeated(lst))</span><br></pre></td></tr></table></figure>
+<h1 id="3-反转列表"><a href="#3-反转列表" class="headerlink" title="3. 反转列表"></a>3. 反转列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def reverse(lst):</span><br><span class="line">    return lst[::-1]</span><br><span class="line">lst &#x3D; [&#39;I&#39;,&#39;love&#39;,&#39;python&#39;]</span><br><span class="line">print(3,reverse(lst))</span><br></pre></td></tr></table></figure>
+<h1 id="4-找出列表中的重复元素"><a href="#4-找出列表中的重复元素" class="headerlink" title="4. 找出列表中的重复元素"></a>4. 找出列表中的重复元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def find_repeat(lst):</span><br><span class="line">    L &#x3D; []</span><br><span class="line">    for x in lst:</span><br><span class="line">        if lst.count(x) &gt; 1 and x not in L:</span><br><span class="line">            L.append(x)</span><br><span class="line">        return L</span><br><span class="line">lst &#x3D; [1,1,2,3,5,5,6]</span><br><span class="line">print(4,&#39;lst中重复的元素是&#39;,find_repeat(lst))</span><br></pre></td></tr></table></figure>
+<h1 id="5-斐波那契数列"><a href="#5-斐波那契数列" class="headerlink" title="5. 斐波那契数列"></a>5. 斐波那契数列</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def febonacci(n):</span><br><span class="line">    if n &lt;&#x3D; 1:</span><br><span class="line">        return [1]</span><br><span class="line">    fib &#x3D; [1,1]</span><br><span class="line">    while len(fib) &lt; n:</span><br><span class="line">        fib.append(fib[len(fib) - 1] + fib[len(fib) - 2])</span><br><span class="line">    return fib</span><br><span class="line">print(5,febonacci(5))</span><br></pre></td></tr></table></figure>
+<h1 id="6-更长列表"><a href="#6-更长列表" class="headerlink" title="6. 更长列表,"></a>6. 更长列表,</h1><p>带有一个 * 的参数为可变的位置参数，意味着能传入任意多个位置参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def max_len(*lst):</span><br><span class="line">    return max(*lst, key &#x3D; lambda v : len(v))</span><br><span class="line">print(6,max_len([1,2,3],[2,3,1,2,5],[1]))</span><br></pre></td></tr></table></figure>
+<h1 id="7-求表头（学会用if和else）"><a href="#7-求表头（学会用if和else）" class="headerlink" title="7. 求表头（学会用if和else）"></a>7. 求表头（学会用if和else）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def head(lst):</span><br><span class="line">    if len(lst) &#x3D;&#x3D; 0:</span><br><span class="line">        return None</span><br><span class="line">    else:</span><br><span class="line">        return lst[0]</span><br><span class="line">#     需要判断列表是否为空</span><br><span class="line">print(7,head([0,2,3]))</span><br></pre></td></tr></table></figure>
+<h1 id="8-求表尾"><a href="#8-求表尾" class="headerlink" title="8. 求表尾"></a>8. 求表尾</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def end(lst):</span><br><span class="line">    return lst[-1] if len(lst) &gt; 0 else None</span><br><span class="line">print(8,end([0,2,3,1]))</span><br></pre></td></tr></table></figure>
+<h1 id="9-打印9-9乘法表"><a href="#9-打印9-9乘法表" class="headerlink" title="9. 打印9*9乘法表"></a>9. 打印9*9乘法表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def mul_table():</span><br><span class="line">    for i in range(1,10):</span><br><span class="line">        for j in range(1,i+1):</span><br><span class="line">            print(str(j) + &#39;*&#39; + str(i) + &#39;&#x3D;&#39; + str(j*i),end &#x3D; &quot;\t&quot;)# \t 是一个制表符</span><br><span class="line">        print()</span><br><span class="line">mul_table()</span><br></pre></td></tr></table></figure>
+<h1 id="10-元素对"><a href="#10-元素对" class="headerlink" title="10. 元素对"></a>10. 元素对</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def pair(t):</span><br><span class="line">    return list(zip(t[:-1],t[1:]))</span><br><span class="line">print(10,pair([1,2,3,4]))</span><br><span class="line"># t[:-1]代表去除最后一个元素</span><br><span class="line"># t[1:]代表去除第一个元素</span><br><span class="line"># zip(t1,t2)代表将t1,t2相对应索引的元素联接起来</span><br></pre></td></tr></table></figure>
+<h1 id="11-样本抽样"><a href="#11-样本抽样" class="headerlink" title="11. 样本抽样"></a>11. 样本抽样</h1><p>  random 模块中有一个sample函数，可以实现随机抽样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from random import randint, sample</span><br><span class="line">lst &#x3D; [randint(0,50) for _ in range(100)]</span><br><span class="line">lst_sample &#x3D; sample(lst,10)</span><br><span class="line">print(11,lst_sample)</span><br></pre></td></tr></table></figure>
+<h1 id="12-重洗数据集"><a href="#12-重洗数据集" class="headerlink" title="12.重洗数据集"></a>12.重洗数据集</h1><p>random模块中有一个shuffle函数，能冲洗数据.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from random import shuffle</span><br><span class="line">lst &#x3D; [randint(0,50) for _ in range(100)]</span><br><span class="line">print(lst[:5])#重洗前</span><br><span class="line">shuffle(lst)</span><br><span class="line">print(lst[:5])#重洗后</span><br></pre></td></tr></table></figure>
+<h1 id="13-生成满足均匀分布的坐标点"><a href="#13-生成满足均匀分布的坐标点" class="headerlink" title="13. 生成满足均匀分布的坐标点"></a>13. 生成满足均匀分布的坐标点</h1><p>  random 模块，uniform(a,b) 生成 [a,b)内符合平均分布的一个随机数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from random import uniform</span><br><span class="line">from pyecharts.charts import Scatter</span><br><span class="line">x, y &#x3D; [i for i in range(100)], [round(uniform(0,10),2) for _ in range(100)]</span><br><span class="line">print(y)</span><br></pre></td></tr></table></figure>
+<p>使用 PyEcharts 绘图，版本 1.6.2。<br>使用前要先导入pyecharts包，可以通过pycharm–&gt;preference–&gt;project–&gt;project interpreter 点击加号，搜索pycharts 然后点击install即可安装成功。<br>注意，运行以下代码至少保证版本要在 1.0 以上：<br>from pyecharts.charts import Scatter<br>import pyecharts.options as opts<br>from random import uniform</p>
+<p>def draw_uniform_points():<br>    x, y = [i for i in range(100)], [<br>        round(uniform(0, 10), 2) for _ in range(100)]<br>    print(y)<br>    c = (<br>        Scatter()<br>        .add_xaxis(x)<br>        .add_yaxis(‘y’, y)<br>    )<br>    c.render()</p>
+<p>draw_uniform_points()<br>得到结果如下，变量 y 取值满足均匀分布。</p>
 
       
       <!-- reward -->
@@ -178,7 +187,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/16/python-day4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/18/python-day5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -196,19 +205,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/18/python-day5/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            python_day5
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/02/15/python-day3/" class="article-nav-link">
+      <a href="/2020/02/16/python-day4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">python_day3</div>
+        <div class="article-nav-title">python_day4</div>
       </a>
     
   </nav>
