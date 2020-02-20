@@ -59,7 +59,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">0字</span>
+            <span class="post-count">932字</span>
         </span>
     </span>
 
@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -79,6 +79,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -93,7 +95,30 @@
       
 
       
-      
+      <h1 id="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"><a href="#Python之数学运算、逻辑运算和进制转化相关的16个内置函数" class="headerlink" title="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"></a>Python之数学运算、逻辑运算和进制转化相关的16个内置函数</h1><a id="more"></a>
+<p>学习之前需要先了解几个概念：位置参数，关键字参数等几个概念：</p>
+<ol>
+<li>位置参数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def funcA(a,b)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">funcA(2,3)</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+如上函数funcA中，定义了两个参数a和b ，当调用该函数时，传入了两个值，2和3，那么按照参数顺序和个数保持一致的原则，2赋值给a，3复制给b，所以结果时a=2，b=3</li>
+</ol>
+<p><em>重点<em>：位置参数的参数顺序和个数需和函数定义的保持一致<br>2. 关键字参数：<br>  还是刚刚的函数funcA(a,b)，如果我们在调用的时候，明确指定参数值赋给哪个形参，例如：<br>  funcA(a=100,b=99)<br>  和<br>  funcA(b=99,a=100 )<br>  得到的结果是一样的。<br>  也就是说，*</em>关键字参数可以让我们在调用函数的时候打乱参数传递的顺序<strong>。<br>  也可以通过如下方式调用：<br>  funcA(100,b=99)<br>  但是这种调用方式时，</strong>位置参数一定要在前**<br>  关于函数原型的学习：<br>  例如：<br>  max(iterable,</em>[,key,default])<br>  函数行参列表中，符号 * 表示，后面的形参只能为<strong>关键字参数</strong>,也就是说max参数用法为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,4,2,2,3]</span><br><span class="line">max(a,key&#x3D;lambda x :a.count(x),default&#x3D;1)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">2</span><br></pre></td></tr></table></figure><br>  再如 sum函数：<br>  sum(iterable,/,start=0)<br>  / 表示该符号前面只能是位置参数<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,1,2,4]</span><br><span class="line">sum(a,2)) # start&#x3D;2 表示求和的初始值为 2</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">15</span><br></pre></td></tr></table></figure><br>  而以下调用时非法的，iterable参数不能被赋值为关键字实参：<br><del>sum(interable=a,start=2)</del></p>
+<h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-len-s-返回对象内元素的个数"><a href="#1-len-s-返回对象内元素的个数" class="headerlink" title="1. len(s):返回对象内元素的个数"></a>1. len(s):返回对象内元素的个数</h3><p>dic = {‘a’:1,’b’:3}<br>print(len(dic))</p>
+<h3 id="2-max-iterable-key-default"><a href="#2-max-iterable-key-default" class="headerlink" title="2. max(iterable,*[,key,default])"></a>2. max(iterable,*[,key,default])</h3><p>print(max(21,2,4,2))</p>
+<h3 id="3-pow-x-y-z-None-：x为底的y次幂（次方）-如果z给出，取余。"><a href="#3-pow-x-y-z-None-：x为底的y次幂（次方）-如果z给出，取余。" class="headerlink" title="3. pow(x,y,z=None,/)：x为底的y次幂（次方）,如果z给出，取余。"></a>3. pow(x,y,z=None,/)：x为底的y次幂（次方）,如果z给出，取余。</h3><p>print(pow(3,2,4))</p>
+<h3 id="4-round-number-ndigits-：四舍五入，ndigits代表小数点吼保留几位"><a href="#4-round-number-ndigits-：四舍五入，ndigits代表小数点吼保留几位" class="headerlink" title="4. round(number[,ndigits])：四舍五入，ndigits代表小数点吼保留几位"></a>4. round(number[,ndigits])：四舍五入，ndigits代表小数点吼保留几位</h3><p>print(round(4/3,3))</p>
+<h3 id="5-sum-iterable-start-0-：求和"><a href="#5-sum-iterable-start-0-：求和" class="headerlink" title="5. sum(iterable,/,start=0)：求和"></a>5. sum(iterable,/,start=0)：求和</h3><p>a = [1,2,1,4,1]<br>print(sum(a))<br>print(sum(a,10))</p>
+<h3 id="6-abs-x-求绝对值"><a href="#6-abs-x-求绝对值" class="headerlink" title="6. abs(x,/):求绝对值"></a>6. abs(x,/):求绝对值</h3><p>print(abs(-6))</p>
+<h3 id="7-divmod-a-b-：分别取商和余数"><a href="#7-divmod-a-b-：分别取商和余数" class="headerlink" title="7. divmod(a,b)：分别取商和余数"></a>7. divmod(a,b)：分别取商和余数</h3><p>print(divmod(10,3))</p>
+<h3 id="8-complex-real-imag-创建一个复数"><a href="#8-complex-real-imag-创建一个复数" class="headerlink" title="8. complex([real[,imag]])创建一个复数"></a>8. complex([real[,imag]])创建一个复数</h3><p>print(complex(1,2))</p>
+<h3 id="9-hash-object-：返回对象的哈希值"><a href="#9-hash-object-：返回对象的哈希值" class="headerlink" title="9. hash(object)：返回对象的哈希值"></a>9. hash(object)：返回对象的哈希值</h3><p>print(hash(‘xiaoming’))# 可哈希的对象可以为字符串或者数值，但不能直接应用于list，set，dict<br>哈希的概念有待理解</p>
+<h3 id="10-id-object-返回对象的内存地址"><a href="#10-id-object-返回对象的内存地址" class="headerlink" title="10. id(object):返回对象的内存地址"></a>10. id(object):返回对象的内存地址</h3><p>print(id(‘xiaoming’))</p>
+<h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><h3 id="1-all-iterable-："><a href="#1-all-iterable-：" class="headerlink" title="1. all(iterable)："></a>1. all(iterable)：</h3><p>接受一个迭代器，如果迭代器中的所有元素都为真，返回True，否则返回False：<br>print(all([1,2,3,1]))</p>
+<h3 id="2-any-iterable-："><a href="#2-any-iterable-：" class="headerlink" title="2. any(iterable)："></a>2. any(iterable)：</h3><p>接受一个迭代器，如果迭代器中的有一个元素都为真，返回True，否则返回False<br>print(any([0,0,0,[]]))# 0，空和false都算Flase<br>print(any([0,0,1]))</p>
+<h2 id="进制转化"><a href="#进制转化" class="headerlink" title="进制转化"></a>进制转化</h2><h3 id="1-ascii-object-：调用对象的repr-方法，获得该方法的返回值。"><a href="#1-ascii-object-：调用对象的repr-方法，获得该方法的返回值。" class="headerlink" title="1. ascii(object)：调用对象的repr()方法，获得该方法的返回值。"></a>1. ascii(object)：调用对象的repr()方法，获得该方法的返回值。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Student():</span><br><span class="line">    def __init__(self,id,name): #__init__()方法是一种特殊的方法，被称为类的构造函数或初始方法，当创建类这个类的实例时就会调用该方法。self代表类的实例，self在定义类的方法时是必须有的，尽管在调用时不必传入相应的参数。</span><br><span class="line">        self.id &#x3D; id # id和name是属性</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &#39;id &#x3D; &#39;+self.id+&#39;name &#x3D; &#39;+self.name</span><br><span class="line">xiaoming &#x3D; Student(&#39;001&#39;,&#39;xiaoming&#39;)</span><br><span class="line">print(ascii(xiaoming))</span><br></pre></td></tr></table></figure>
+<h3 id="2-bin-x-：将十进制转换为二进制"><a href="#2-bin-x-：将十进制转换为二进制" class="headerlink" title="2. bin(x)：将十进制转换为二进制"></a>2. bin(x)：将十进制转换为二进制</h3><p><code>print(bin(10))</code></p>
+<h3 id="3-oct-x-：将十进制转换为八进制"><a href="#3-oct-x-：将十进制转换为八进制" class="headerlink" title="3. oct(x)：将十进制转换为八进制"></a>3. oct(x)：将十进制转换为八进制</h3><p><code>print(oct(9))</code></p>
+<h3 id="4-hex-x-：将十进制转换为十六进制"><a href="#4-hex-x-：将十进制转换为十六进制" class="headerlink" title="4. hex(x)：将十进制转换为十六进制"></a>4. hex(x)：将十进制转换为十六进制</h3><p><code>print(hex(15))</code></p>
+
       
       <!-- reward -->
       
@@ -165,6 +190,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
 
     </footer>
 
