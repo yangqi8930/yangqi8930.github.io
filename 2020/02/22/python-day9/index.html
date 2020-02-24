@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    python_day7 |  SuperMario
+    python_day9 |  SuperMario
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-python-day7" class="article article-type-post" itemscope
+  <article id="post-python-day9" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  python_day7
+  python_day9
 </h1>
   
 
@@ -48,10 +48,14 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/20/python-day7/" class="article-date">
-  <time datetime="2020-02-20T02:19:14.000Z" itemprop="datePublished">2020-02-20</time>
+      <a href="/2020/02/22/python-day9/" class="article-date">
+  <time datetime="2020-02-22T10:22:59.000Z" itemprop="datePublished">2020-02-22</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">python 正则表达式</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -59,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">932字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -68,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3分钟</span>
+            <span class="post-count">5分钟</span>
         </span>
     </span>
 </div>
@@ -95,29 +99,21 @@
       
 
       
-      <h1 id="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"><a href="#Python之数学运算、逻辑运算和进制转化相关的16个内置函数" class="headerlink" title="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"></a>Python之数学运算、逻辑运算和进制转化相关的16个内置函数</h1><a id="more"></a>
-<p>学习之前需要先了解几个概念：位置参数，关键字参数等几个概念：</p>
+      <h1 id="Python-之正则表达式"><a href="#Python-之正则表达式" class="headerlink" title="Python 之正则表达式"></a>Python 之正则表达式</h1><a id="more"></a>
+<p>使用前先导入所需模块： re<br><code>import re</code><br>认识常用的元字符：<br>· . 匹配除 “\n” 和 “\r” 之外的任何单个字符。<br>· ^ 匹配字符串开始位置<br>· $ 匹配字符串中结束的位置<br>· * 前面的原子重复 0 次、1 次、多次<br>· ? 前面的原子重复 0 次或者 1 次<br>· + 前面的原子重复 1 次或多次<br>· {n} 前面的原子出现了 n 次<br>· {n,} 前面的原子至少出现 n 次<br>· {n,m} 前面的原子出现次数介于 n-m 之间<br>· ( ) 分组，输出需要的部分<br>认识常用的通用字符：<br>· \s 匹配空白字符<br>· \w 匹配任意字母/数字/下划线<br>· \W 和小写 w 相反，匹配任意字母/数字/下划线以外的字符<br>· \d 匹配十进制数字<br>· \D 匹配除了十进制数以外的值<br>· [0-9] 匹配一个 0~9 之间的数字<br>· [a-z] 匹配小写英文字母<br>· [A-Z] 匹配大写英文字母</p>
 <ol>
-<li>位置参数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def funcA(a,b)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">funcA(2,3)</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-如上函数funcA中，定义了两个参数a和b ，当调用该函数时，传入了两个值，2和3，那么按照参数顺序和个数保持一致的原则，2赋值给a，3复制给b，所以结果时a=2，b=3</li>
+<li>finditer匹配迭代器：返回左右子串匹配位置的迭代器<br><code>import re</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;山东省潍坊市青州第1中学高三1班&#39;</span><br><span class="line">pat &#x3D; &#39;1&#39;</span><br><span class="line">r &#x3D; re.finditer(pat,s)</span><br><span class="line">for i in r:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></li>
+<li>findall所有匹配<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;一共20行代码运行时间12.59s&#39;</span><br><span class="line">pat &#x3D; r&#39;\d+&#39;</span><br><span class="line">print(r)</span><br><span class="line">pat1 &#x3D; r&#39;\d+\.?\d+&#39; # ?表示匹配前一个字符0或者1次  .?表示匹配小数点0次或者一次</span><br><span class="line">r1 &#x3D; re.findall(pat1,s)</span><br><span class="line">print(r1)</span><br></pre></td></tr></table></figure>
+这个式子会有一个问题就是：<code>r&#39;\d+\.?\d+&#39;</code>后面的一个’\d+’，<br>至少要匹配一个数字，再加上前面那个’\d+’，表示这个式子至少要匹配两位数,所以当只有一位数时，无法匹配出来。<br>修改匹配细则如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D;&#39;一共2行代码运行时间12.59s&#39;</span><br><span class="line">pat2 &#x3D; r&#39;\d+\.?\d*&#39; #\d*表示匹配数字0次或更多次.</span><br><span class="line">r2 &#x3D; re.findall(pat2,s)</span><br><span class="line">print(r2)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;2&#39;, &#39;12.59&#39;]</span><br></pre></td></tr></table></figure></li>
+<li>匹配正整数:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [-16,1.5,11.43,10,5]</span><br><span class="line"># pat &#x3D; r&#39;^\d*$&#39;</span><br><span class="line"># pat &#x3D; r&#39;^[0-9]&#39;</span><br><span class="line">pat &#x3D; r&#39;^[0-9]\d*$&#39;</span><br><span class="line">r &#x3D; [i for i in s if re.match(pat,str(i))]</span><br><span class="line">print(r)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[10, 5]</span><br></pre></td></tr></table></figure></li>
+<li>re.I 忽略大小写<br>re.I是方法的可选参数，表示忽略大小写。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;That&#39;</span><br><span class="line">pat &#x3D; r&#39;t&#39;</span><br><span class="line">r &#x3D; re.finditer(pat,s,re.I)</span><br><span class="line">for i in r:</span><br><span class="line">    print(i.span())</span><br><span class="line"># 5. split分割单词</span><br><span class="line">s &#x3D; &#39;id\tname\taddress&#39;</span><br><span class="line">r &#x3D; s.split(&#39;\t&#39;)</span><br><span class="line">print(r)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;id&#39;, &#39;name&#39;, &#39;address&#39;]</span><br><span class="line">#  这是规则比较简单的字符串，都由\t分割</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;This,,,   module ; \t   provides|| regular ; &#39;</span><br><span class="line">pat &#x3D; r&#39;[,\s\t;|]+&#39;</span><br><span class="line">r &#x3D; re.split(pat,s)</span><br><span class="line">print(r)</span><br><span class="line"># 这就是比较复杂的字符串了，包含了很多分割符&#39;,;\t|&#39;和空格</span><br><span class="line">[&#39;This&#39;, &#39;module&#39;, &#39;provides&#39;, &#39;regular&#39;, &#39;&#39;]</span><br></pre></td></tr></table></figure></li>
+<li>sub替换匹配串<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; &quot;hello 12345,hello 456321&quot;</span><br><span class="line">pat &#x3D; re.compile(r&#39;\d+&#39;)</span><br><span class="line">m &#x3D; pat.sub(&quot;666&quot;,content)</span><br><span class="line">print(m)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">hello 666,hello 666</span><br></pre></td></tr></table></figure></li>
+<li>compile预编译<br>如果要用同一种匹配模式，做很多次匹配，可以使用compile预先编译/<br>案例：从一系列字符串中，挑选出所有的正浮点数.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [-16,&#39;good&#39;,1.5, 0.21231, -0.1124, &#39;11.43&#39;, 10, &#39;5e10&#39;,&#39;s0.13&#39;]</span><br><span class="line">pat &#x3D; r&#39;^[0-9]\.\d*$&#39;</span><br><span class="line">rec &#x3D; re.compile(pat)</span><br><span class="line">for i in s:</span><br><span class="line">    if rec.match(str(i)):</span><br><span class="line">        print(i)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">1.5</span><br><span class="line">0.21231</span><br></pre></td></tr></table></figure></li>
+<li>贪心捕获：正则模块中，根据某个模式串，匹配到结果<br>案例：待爬取的部分内容如下所示，现在想要提取标签<div>中的内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; &#39;&#39;&#39;&lt;h&gt;ddedadsad&lt;&#x2F;h&gt;&lt;div&gt;graph&lt;&#x2F;div&gt;&lt;div&gt;math&lt;&#x2F;div&gt;&#39;&#39;&#39;</span><br><span class="line">result &#x3D; re.findall(r&#39;&lt;div&gt;.*&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;&lt;div&gt;graph&lt;&#x2F;div&gt;&lt;div&gt;math&lt;&#x2F;div&gt;&#39;]</span><br><span class="line"># 如果将匹配字符串改为r&#39;&lt;div&gt;(.*)&lt;&#x2F;div&gt;&#39;</span><br><span class="line">result &#x3D; re.findall(r&#39;&lt;div&gt;(.*)&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;[&#39;graph&lt;&#x2F;div&gt;&lt;div&gt;math&#39;]</span><br><span class="line"># 该结果就没有&lt;div&gt;&lt;&#x2F;div&gt;标签了</span><br><span class="line"># 其中(.*)表示捕获任意多个字符，尽可能多的匹配字符，被称为贪心捕获</span><br></pre></td></tr></table></figure></li>
+<li>非贪心捕获<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result1 &#x3D; re.findall(r&#39;&lt;div&gt;(.*?)&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result1)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;graph&#39;, &#39;math&#39;]</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<p><em>重点<em>：位置参数的参数顺序和个数需和函数定义的保持一致<br>2. 关键字参数：<br>  还是刚刚的函数funcA(a,b)，如果我们在调用的时候，明确指定参数值赋给哪个形参，例如：<br>  funcA(a=100,b=99)<br>  和<br>  funcA(b=99,a=100 )<br>  得到的结果是一样的。<br>  也就是说，*</em>关键字参数可以让我们在调用函数的时候打乱参数传递的顺序<strong>。<br>  也可以通过如下方式调用：<br>  funcA(100,b=99)<br>  但是这种调用方式时，</strong>位置参数一定要在前**<br>  关于函数原型的学习：<br>  例如：<br>  max(iterable,</em>[,key,default])<br>  函数行参列表中，符号 * 表示，后面的形参只能为<strong>关键字参数</strong>,也就是说max参数用法为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,4,2,2,3]</span><br><span class="line">max(a,key&#x3D;lambda x :a.count(x),default&#x3D;1)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">2</span><br></pre></td></tr></table></figure><br>  再如 sum函数：<br>  sum(iterable,/,start=0)<br>  / 表示该符号前面只能是位置参数<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,1,2,4]</span><br><span class="line">sum(a,2)) # start&#x3D;2 表示求和的初始值为 2</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">15</span><br></pre></td></tr></table></figure><br>  而以下调用时非法的，iterable参数不能被赋值为关键字实参：<br><del>sum(interable=a,start=2)</del></p>
-<h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-len-s-返回对象内元素的个数"><a href="#1-len-s-返回对象内元素的个数" class="headerlink" title="1. len(s):返回对象内元素的个数"></a>1. len(s):返回对象内元素的个数</h3><p>dic = {‘a’:1,’b’:3}<br>print(len(dic))</p>
-<h3 id="2-max-iterable-key-default"><a href="#2-max-iterable-key-default" class="headerlink" title="2. max(iterable,*[,key,default])"></a>2. max(iterable,*[,key,default])</h3><p>print(max(21,2,4,2))</p>
-<h3 id="3-pow-x-y-z-None-：x为底的y次幂（次方）-如果z给出，取余。"><a href="#3-pow-x-y-z-None-：x为底的y次幂（次方）-如果z给出，取余。" class="headerlink" title="3. pow(x,y,z=None,/)：x为底的y次幂（次方）,如果z给出，取余。"></a>3. pow(x,y,z=None,/)：x为底的y次幂（次方）,如果z给出，取余。</h3><p>print(pow(3,2,4))</p>
-<h3 id="4-round-number-ndigits-：四舍五入，ndigits代表小数点吼保留几位"><a href="#4-round-number-ndigits-：四舍五入，ndigits代表小数点吼保留几位" class="headerlink" title="4. round(number[,ndigits])：四舍五入，ndigits代表小数点吼保留几位"></a>4. round(number[,ndigits])：四舍五入，ndigits代表小数点吼保留几位</h3><p>print(round(4/3,3))</p>
-<h3 id="5-sum-iterable-start-0-：求和"><a href="#5-sum-iterable-start-0-：求和" class="headerlink" title="5. sum(iterable,/,start=0)：求和"></a>5. sum(iterable,/,start=0)：求和</h3><p>a = [1,2,1,4,1]<br>print(sum(a))<br>print(sum(a,10))</p>
-<h3 id="6-abs-x-求绝对值"><a href="#6-abs-x-求绝对值" class="headerlink" title="6. abs(x,/):求绝对值"></a>6. abs(x,/):求绝对值</h3><p>print(abs(-6))</p>
-<h3 id="7-divmod-a-b-：分别取商和余数"><a href="#7-divmod-a-b-：分别取商和余数" class="headerlink" title="7. divmod(a,b)：分别取商和余数"></a>7. divmod(a,b)：分别取商和余数</h3><p>print(divmod(10,3))</p>
-<h3 id="8-complex-real-imag-创建一个复数"><a href="#8-complex-real-imag-创建一个复数" class="headerlink" title="8. complex([real[,imag]])创建一个复数"></a>8. complex([real[,imag]])创建一个复数</h3><p>print(complex(1,2))</p>
-<h3 id="9-hash-object-：返回对象的哈希值"><a href="#9-hash-object-：返回对象的哈希值" class="headerlink" title="9. hash(object)：返回对象的哈希值"></a>9. hash(object)：返回对象的哈希值</h3><p>print(hash(‘xiaoming’))# 可哈希的对象可以为字符串或者数值，但不能直接应用于list，set，dict<br>哈希的概念有待理解</p>
-<h3 id="10-id-object-返回对象的内存地址"><a href="#10-id-object-返回对象的内存地址" class="headerlink" title="10. id(object):返回对象的内存地址"></a>10. id(object):返回对象的内存地址</h3><p>print(id(‘xiaoming’))</p>
-<h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><h3 id="1-all-iterable-："><a href="#1-all-iterable-：" class="headerlink" title="1. all(iterable)："></a>1. all(iterable)：</h3><p>接受一个迭代器，如果迭代器中的所有元素都为真，返回True，否则返回False：<br>print(all([1,2,3,1]))</p>
-<h3 id="2-any-iterable-："><a href="#2-any-iterable-：" class="headerlink" title="2. any(iterable)："></a>2. any(iterable)：</h3><p>接受一个迭代器，如果迭代器中的有一个元素都为真，返回True，否则返回False<br>print(any([0,0,0,[]]))# 0，空和false都算Flase<br>print(any([0,0,1]))</p>
-<h2 id="进制转化"><a href="#进制转化" class="headerlink" title="进制转化"></a>进制转化</h2><h3 id="1-ascii-object-：调用对象的repr-方法，获得该方法的返回值。"><a href="#1-ascii-object-：调用对象的repr-方法，获得该方法的返回值。" class="headerlink" title="1. ascii(object)：调用对象的repr()方法，获得该方法的返回值。"></a>1. ascii(object)：调用对象的repr()方法，获得该方法的返回值。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Student():</span><br><span class="line">    def __init__(self,id,name): #__init__()方法是一种特殊的方法，被称为类的构造函数或初始方法，当创建类这个类的实例时就会调用该方法。self代表类的实例，self在定义类的方法时是必须有的，尽管在调用时不必传入相应的参数。</span><br><span class="line">        self.id &#x3D; id # id和name是属性</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &#39;id &#x3D; &#39;+self.id+&#39;name &#x3D; &#39;+self.name</span><br><span class="line">xiaoming &#x3D; Student(&#39;001&#39;,&#39;xiaoming&#39;)</span><br><span class="line">print(ascii(xiaoming))</span><br></pre></td></tr></table></figure>
-<h3 id="2-bin-x-：将十进制转换为二进制"><a href="#2-bin-x-：将十进制转换为二进制" class="headerlink" title="2. bin(x)：将十进制转换为二进制"></a>2. bin(x)：将十进制转换为二进制</h3><p><code>print(bin(10))</code></p>
-<h3 id="3-oct-x-：将十进制转换为八进制"><a href="#3-oct-x-：将十进制转换为八进制" class="headerlink" title="3. oct(x)：将十进制转换为八进制"></a>3. oct(x)：将十进制转换为八进制</h3><p><code>print(oct(9))</code></p>
-<h3 id="4-hex-x-：将十进制转换为十六进制"><a href="#4-hex-x-：将十进制转换为十六进制" class="headerlink" title="4. hex(x)：将十进制转换为十六进制"></a>4. hex(x)：将十进制转换为十六进制</h3><p><code>print(hex(15))</code></p>
 
       
       <!-- reward -->
@@ -183,7 +179,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/20/python-day7/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/22/python-day9/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -201,19 +197,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/20/python-day8/" class="article-nav-link">
+      <a href="/2020/02/23/python-day10/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            python_day8
+            python_day10
           
         </div>
       </a>
     
     
-      <a href="/2020/02/19/python-day6/" class="article-nav-link">
+      <a href="/2020/02/20/python-day8/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">python_day6</div>
+        <div class="article-nav-title">python_day8</div>
       </a>
     
   </nav>

@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    python_day7 |  SuperMario
+    python_day8 |  SuperMario
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-python-day7" class="article article-type-post" itemscope
+  <article id="post-python-day8" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  python_day7
+  python_day8
 </h1>
   
 
@@ -48,8 +48,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/20/python-day7/" class="article-date">
-  <time datetime="2020-02-20T02:19:14.000Z" itemprop="datePublished">2020-02-20</time>
+      <a href="/2020/02/20/python-day8/" class="article-date">
+  <time datetime="2020-02-20T07:35:58.000Z" itemprop="datePublished">2020-02-20</time>
 </a>
       
       
@@ -59,7 +59,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">932字</span>
+            <span class="post-count">270字</span>
         </span>
     </span>
 
@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -95,29 +95,16 @@
       
 
       
-      <h1 id="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"><a href="#Python之数学运算、逻辑运算和进制转化相关的16个内置函数" class="headerlink" title="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"></a>Python之数学运算、逻辑运算和进制转化相关的16个内置函数</h1><a id="more"></a>
-<p>学习之前需要先了解几个概念：位置参数，关键字参数等几个概念：</p>
-<ol>
-<li>位置参数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def funcA(a,b)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">funcA(2,3)</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-如上函数funcA中，定义了两个参数a和b ，当调用该函数时，传入了两个值，2和3，那么按照参数顺序和个数保持一致的原则，2赋值给a，3复制给b，所以结果时a=2，b=3</li>
-</ol>
-<p><em>重点<em>：位置参数的参数顺序和个数需和函数定义的保持一致<br>2. 关键字参数：<br>  还是刚刚的函数funcA(a,b)，如果我们在调用的时候，明确指定参数值赋给哪个形参，例如：<br>  funcA(a=100,b=99)<br>  和<br>  funcA(b=99,a=100 )<br>  得到的结果是一样的。<br>  也就是说，*</em>关键字参数可以让我们在调用函数的时候打乱参数传递的顺序<strong>。<br>  也可以通过如下方式调用：<br>  funcA(100,b=99)<br>  但是这种调用方式时，</strong>位置参数一定要在前**<br>  关于函数原型的学习：<br>  例如：<br>  max(iterable,</em>[,key,default])<br>  函数行参列表中，符号 * 表示，后面的形参只能为<strong>关键字参数</strong>,也就是说max参数用法为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,4,2,2,3]</span><br><span class="line">max(a,key&#x3D;lambda x :a.count(x),default&#x3D;1)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">2</span><br></pre></td></tr></table></figure><br>  再如 sum函数：<br>  sum(iterable,/,start=0)<br>  / 表示该符号前面只能是位置参数<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,1,2,4]</span><br><span class="line">sum(a,2)) # start&#x3D;2 表示求和的初始值为 2</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">15</span><br></pre></td></tr></table></figure><br>  而以下调用时非法的，iterable参数不能被赋值为关键字实参：<br><del>sum(interable=a,start=2)</del></p>
-<h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-len-s-返回对象内元素的个数"><a href="#1-len-s-返回对象内元素的个数" class="headerlink" title="1. len(s):返回对象内元素的个数"></a>1. len(s):返回对象内元素的个数</h3><p>dic = {‘a’:1,’b’:3}<br>print(len(dic))</p>
-<h3 id="2-max-iterable-key-default"><a href="#2-max-iterable-key-default" class="headerlink" title="2. max(iterable,*[,key,default])"></a>2. max(iterable,*[,key,default])</h3><p>print(max(21,2,4,2))</p>
-<h3 id="3-pow-x-y-z-None-：x为底的y次幂（次方）-如果z给出，取余。"><a href="#3-pow-x-y-z-None-：x为底的y次幂（次方）-如果z给出，取余。" class="headerlink" title="3. pow(x,y,z=None,/)：x为底的y次幂（次方）,如果z给出，取余。"></a>3. pow(x,y,z=None,/)：x为底的y次幂（次方）,如果z给出，取余。</h3><p>print(pow(3,2,4))</p>
-<h3 id="4-round-number-ndigits-：四舍五入，ndigits代表小数点吼保留几位"><a href="#4-round-number-ndigits-：四舍五入，ndigits代表小数点吼保留几位" class="headerlink" title="4. round(number[,ndigits])：四舍五入，ndigits代表小数点吼保留几位"></a>4. round(number[,ndigits])：四舍五入，ndigits代表小数点吼保留几位</h3><p>print(round(4/3,3))</p>
-<h3 id="5-sum-iterable-start-0-：求和"><a href="#5-sum-iterable-start-0-：求和" class="headerlink" title="5. sum(iterable,/,start=0)：求和"></a>5. sum(iterable,/,start=0)：求和</h3><p>a = [1,2,1,4,1]<br>print(sum(a))<br>print(sum(a,10))</p>
-<h3 id="6-abs-x-求绝对值"><a href="#6-abs-x-求绝对值" class="headerlink" title="6. abs(x,/):求绝对值"></a>6. abs(x,/):求绝对值</h3><p>print(abs(-6))</p>
-<h3 id="7-divmod-a-b-：分别取商和余数"><a href="#7-divmod-a-b-：分别取商和余数" class="headerlink" title="7. divmod(a,b)：分别取商和余数"></a>7. divmod(a,b)：分别取商和余数</h3><p>print(divmod(10,3))</p>
-<h3 id="8-complex-real-imag-创建一个复数"><a href="#8-complex-real-imag-创建一个复数" class="headerlink" title="8. complex([real[,imag]])创建一个复数"></a>8. complex([real[,imag]])创建一个复数</h3><p>print(complex(1,2))</p>
-<h3 id="9-hash-object-：返回对象的哈希值"><a href="#9-hash-object-：返回对象的哈希值" class="headerlink" title="9. hash(object)：返回对象的哈希值"></a>9. hash(object)：返回对象的哈希值</h3><p>print(hash(‘xiaoming’))# 可哈希的对象可以为字符串或者数值，但不能直接应用于list，set，dict<br>哈希的概念有待理解</p>
-<h3 id="10-id-object-返回对象的内存地址"><a href="#10-id-object-返回对象的内存地址" class="headerlink" title="10. id(object):返回对象的内存地址"></a>10. id(object):返回对象的内存地址</h3><p>print(id(‘xiaoming’))</p>
-<h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><h3 id="1-all-iterable-："><a href="#1-all-iterable-：" class="headerlink" title="1. all(iterable)："></a>1. all(iterable)：</h3><p>接受一个迭代器，如果迭代器中的所有元素都为真，返回True，否则返回False：<br>print(all([1,2,3,1]))</p>
-<h3 id="2-any-iterable-："><a href="#2-any-iterable-：" class="headerlink" title="2. any(iterable)："></a>2. any(iterable)：</h3><p>接受一个迭代器，如果迭代器中的有一个元素都为真，返回True，否则返回False<br>print(any([0,0,0,[]]))# 0，空和false都算Flase<br>print(any([0,0,1]))</p>
-<h2 id="进制转化"><a href="#进制转化" class="headerlink" title="进制转化"></a>进制转化</h2><h3 id="1-ascii-object-：调用对象的repr-方法，获得该方法的返回值。"><a href="#1-ascii-object-：调用对象的repr-方法，获得该方法的返回值。" class="headerlink" title="1. ascii(object)：调用对象的repr()方法，获得该方法的返回值。"></a>1. ascii(object)：调用对象的repr()方法，获得该方法的返回值。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Student():</span><br><span class="line">    def __init__(self,id,name): #__init__()方法是一种特殊的方法，被称为类的构造函数或初始方法，当创建类这个类的实例时就会调用该方法。self代表类的实例，self在定义类的方法时是必须有的，尽管在调用时不必传入相应的参数。</span><br><span class="line">        self.id &#x3D; id # id和name是属性</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &#39;id &#x3D; &#39;+self.id+&#39;name &#x3D; &#39;+self.name</span><br><span class="line">xiaoming &#x3D; Student(&#39;001&#39;,&#39;xiaoming&#39;)</span><br><span class="line">print(ascii(xiaoming))</span><br></pre></td></tr></table></figure>
-<h3 id="2-bin-x-：将十进制转换为二进制"><a href="#2-bin-x-：将十进制转换为二进制" class="headerlink" title="2. bin(x)：将十进制转换为二进制"></a>2. bin(x)：将十进制转换为二进制</h3><p><code>print(bin(10))</code></p>
-<h3 id="3-oct-x-：将十进制转换为八进制"><a href="#3-oct-x-：将十进制转换为八进制" class="headerlink" title="3. oct(x)：将十进制转换为八进制"></a>3. oct(x)：将十进制转换为八进制</h3><p><code>print(oct(9))</code></p>
-<h3 id="4-hex-x-：将十进制转换为十六进制"><a href="#4-hex-x-：将十进制转换为十六进制" class="headerlink" title="4. hex(x)：将十进制转换为十六进制"></a>4. hex(x)：将十进制转换为十六进制</h3><p><code>print(hex(15))</code></p>
+      <h1 id="Python之16个类型函数和10个类对象相关的内置函数"><a href="#Python之16个类型函数和10个类对象相关的内置函数" class="headerlink" title="Python之16个类型函数和10个类对象相关的内置函数"></a>Python之16个类型函数和10个类对象相关的内置函数</h1><h2 id="类型函数"><a href="#类型函数" class="headerlink" title="类型函数"></a>类型函数</h2><h3 id="1-bool-x-：测试一个对象是True还是False"><a href="#1-bool-x-：测试一个对象是True还是False" class="headerlink" title="1. bool([x])：测试一个对象是True还是False"></a>1. bool([x])：测试一个对象是True还是False</h3><p>print(bool([0,0,0]))</p>
+<h3 id="2-bytes-source-encoding-errors"><a href="#2-bytes-source-encoding-errors" class="headerlink" title="2. bytes([source[,encoding[,errors]]])"></a>2. bytes([source[,encoding[,errors]]])</h3><p>s = “apple”<br>print(bytes(s,encoding=’utf-8’))</p>
+<h3 id="3-str-object-’’-：将字符类型、数值类型等转换为字符串类型："><a href="#3-str-object-’’-：将字符类型、数值类型等转换为字符串类型：" class="headerlink" title="3. str(object=’’)：将字符类型、数值类型等转换为字符串类型："></a>3. str(object=’’)：将字符类型、数值类型等转换为字符串类型：</h3><p>print(str(100))</p>
+<h3 id="4-chr-i-：查看十进制整数对应的ASCII字符："><a href="#4-chr-i-：查看十进制整数对应的ASCII字符：" class="headerlink" title="4. chr(i)：查看十进制整数对应的ASCII字符："></a>4. chr(i)：查看十进制整数对应的ASCII字符：</h3><p>print(chr(65))</p>
+<h3 id="5-ord-c-：查看某个ASCII字符对应的十进制数"><a href="#5-ord-c-：查看某个ASCII字符对应的十进制数" class="headerlink" title="5. ord(c)：查看某个ASCII字符对应的十进制数"></a>5. ord(c)：查看某个ASCII字符对应的十进制数</h3><p>print(ord(‘A’))</p>
+<h3 id="6-dict-：创建数据字典：（见day6笔记第一条）"><a href="#6-dict-：创建数据字典：（见day6笔记第一条）" class="headerlink" title="6. dict()：创建数据字典：（见day6笔记第一条）"></a>6. dict()：创建数据字典：（见day6笔记第一条）</h3><h3 id="7-object-：返回一个根对象，他是所有类的基类"><a href="#7-object-：返回一个根对象，他是所有类的基类" class="headerlink" title="7. object()：返回一个根对象，他是所有类的基类"></a>7. object()：返回一个根对象，他是所有类的基类</h3><p>o = object()<br>print(type(o))</p>
+<h3 id="8-int-x-：int-x-base-10-，x可能为字符串或数值，将x转换为一个整数"><a href="#8-int-x-：int-x-base-10-，x可能为字符串或数值，将x转换为一个整数" class="headerlink" title="8. int(x)：int(x,base =10)，x可能为字符串或数值，将x转换为一个整数"></a>8. int(x)：int(x,base =10)，x可能为字符串或数值，将x转换为一个整数</h3><p>int(‘12’)<br>int(‘12’,16) # 将字符’12’转换为16进制的整数。</p>
+<h3 id="9-float-x-：将一个字符串或整数转换为浮点数"><a href="#9-float-x-：将一个字符串或整数转换为浮点数" class="headerlink" title="9. float(x)：将一个字符串或整数转换为浮点数"></a>9. float(x)：将一个字符串或整数转换为浮点数</h3><p>float(‘12’)</p>
+<h3 id="10-frozenset-iterable-：创建一个不可修改的冻结集合，一旦创建不允许增删元素。"><a href="#10-frozenset-iterable-：创建一个不可修改的冻结集合，一旦创建不允许增删元素。" class="headerlink" title="10. frozenset([iterable])：创建一个不可修改的冻结集合，一旦创建不允许增删元素。"></a>10. frozenset([iterable])：创建一个不可修改的冻结集合，一旦创建不允许增删元素。</h3><p>s = frozenset([1,1,3,2,3])<br>print(s)</p>
+<h3 id="11-list-iterable-：返回可变序列类型：列表"><a href="#11-list-iterable-：返回可变序列类型：列表" class="headerlink" title="11. list([iterable])：返回可变序列类型：列表"></a>11. list([iterable])：返回可变序列类型：列表</h3><p>s = {1,2,3}<br>print(list(s))</p>
 
       
       <!-- reward -->
@@ -183,7 +170,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/20/python-day7/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/20/python-day8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -201,19 +188,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/20/python-day8/" class="article-nav-link">
+      <a href="/2020/02/22/python-day9/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            python_day8
+            python_day9
           
         </div>
       </a>
     
     
-      <a href="/2020/02/19/python-day6/" class="article-nav-link">
+      <a href="/2020/02/20/python-day7/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">python_day6</div>
+        <div class="article-nav-title">python_day7</div>
       </a>
     
   </nav>
