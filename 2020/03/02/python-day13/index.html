@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    python_day13_高阶函数 |  SuperMario
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/mario3.jpeg" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-python-day13" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  python_day13_高阶函数
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/02/python-day13/" class="article-date">
+  <time datetime="2020-03-02T08:32:45.000Z" itemprop="datePublished">2020-03-02</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><a id="more"></a>
+<h2 id="filter-function-iterable"><a href="#filter-function-iterable" class="headerlink" title="filter(function,iterable)"></a>filter(function,iterable)</h2><p>  过滤器，过滤掉不满足函数function的元素，重新返回一个新的迭代器，该函数等价于如下自定义函数 filter_self：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def filter_self(function,iterable):</span><br><span class="line">    return iter([item for item in iterable if function(item)])</span><br></pre></td></tr></table></figure><br>filter_self 函数接收一个function作为参数，满足条件的元素才得以保留。<br>调用filter_self，筛选满足指定身高的学生。其条件是，男生身高超过1.75，女生身高超过1.65</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def filter_self(function,iterable):</span><br><span class="line">    return iter([item for item in iterable if function(item)])</span><br><span class="line">class Student():</span><br><span class="line">    def __init__(self,name,sex,height):</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">        self.sex &#x3D; sex</span><br><span class="line">        self.height &#x3D; height</span><br><span class="line">def height_condition(stu):</span><br><span class="line">    if stu.sex &#x3D;&#x3D; &#39;male&#39;:</span><br><span class="line">        return stu.height &gt; 1.75</span><br><span class="line">    else:</span><br><span class="line">        return stu.height &gt; 1.65</span><br><span class="line">students &#x3D; [Student(&#39;xiaoming&#39;,&#39;male&#39;,1.74),</span><br><span class="line">            Student(&#39;xiaohong&#39;,&#39;female&#39;,1.68),</span><br><span class="line">            Student(&#39;xiaoli&#39;,&#39;male&#39;,1.80)]</span><br><span class="line">students_satisfy &#x3D; filter_self(height_condition,students)</span><br><span class="line">for stu in students_satisfy:</span><br><span class="line">        print(stu.name)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">xiaohong</span><br><span class="line">xiaoli</span><br></pre></td></tr></table></figure>
+<h2 id="map-function-iterable-…"><a href="#map-function-iterable-…" class="headerlink" title="map(function,iterable,…)"></a>map(function,iterable,…)</h2><p>它将function映射于iterable的每一项，并返回一个新的迭代器。<br>如下，map函数实现每个元素加1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mylst &#x3D; [1,2,3,4,1]</span><br><span class="line">result &#x3D; map(lambda x:x+1,mylst)</span><br><span class="line">print(list(result))</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[2, 3, 4, 5, 2]</span><br></pre></td></tr></table></figure>
+<p>同时注意到，map函数支持传入多个可迭代对象。当传入多个可迭代对象时，输出原属个数等于较短序列长度。<br>如下，传入两个列表，function就需要接受两个参数，取值分别对应第一、第二个列表中的元素。<br>找到同时满足第一个列表的元素为奇数，第二个列表对应位置的元素为偶数的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xy &#x3D; map(lambda x,y:x%2&#x3D;&#x3D;1 and y%2&#x3D;&#x3D;0,[1,3,2,4,1],[3,2,1,2])</span><br><span class="line">for i in xy:</span><br><span class="line">    print(i)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">False</span><br><span class="line">True</span><br><span class="line">False</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<p>借助map函数，还能实现向量级运算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst1 &#x3D; [1,2,3,4,5,6]</span><br><span class="line">lst2 &#x3D; [3,4,5,6,3,2]</span><br><span class="line">def vector_add(x,y):</span><br><span class="line">    return list(map(lambda i,j:i+j,x,y))</span><br><span class="line">print(vector_add(lst1,lst2))</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[4, 6, 8, 10, 8, 8]</span><br></pre></td></tr></table></figure>
+<p>同时还支持，向量长度不等的加法运算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lst1 &#x3D; [1,2,3,4,5,6]</span><br><span class="line">lst3 &#x3D; [1,2]</span><br><span class="line">vector_add(lst1,lst3)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[2, 4]</span><br></pre></td></tr></table></figure>
+<h2 id="reduce-function-iterable-initializer"><a href="#reduce-function-iterable-initializer" class="headerlink" title="reduce(function,iterable[,initializer])"></a>reduce(function,iterable[,initializer])</h2><p>提到map，就会想起reduce，前者生成映射关系，后者实现归约。<br>reduce函数位于functools模块中，使用前需要先导入。<br>reduce函数中的第一个参数是函数function，function函数，参数个数必须为2，k是可迭代对象iterable内的连续两项。<br>计算过程，从左侧到右侧，依次归约，直到最终为单个值并返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from functools import reduce</span><br><span class="line">a &#x3D; reduce(lambda x,y:x+y,list(range(10)))</span><br><span class="line">print(a)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">45</span><br></pre></td></tr></table></figure>
+<h2 id="reversed-seq"><a href="#reversed-seq" class="headerlink" title="reversed(seq)"></a>reversed(seq)</h2><p>重新生成一个反向迭代器，对输入的序列实现反转。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rev &#x3D; reversed([1,4,2,3,1])</span><br><span class="line">for i in rev:</span><br><span class="line">    print(i)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">1</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">4</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<h2 id="sorted-iterable-key-None-reverse-False"><a href="#sorted-iterable-key-None-reverse-False" class="headerlink" title="sorted(iterable,*,key=None,reverse=False)"></a>sorted(iterable,*,key=None,reverse=False)</h2><p>实现对序列化对象的排序<br>key参数和reversed参数必须为关键字参数，都可以省略。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,4,2,3,1]</span><br><span class="line">b &#x3D; sorted(a,reverse&#x3D;True)</span><br><span class="line">print(b)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[4, 3, 2, 1, 1]</span><br></pre></td></tr></table></figure>
+<p>如果可迭代对象的元素也是一个复合对象，如下为字典。<br>依据为字典键的值，sorted的key函数就会被用到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#123;&#39;name&#39;:&#39;xiaoming&#39;,&#39;age&#39;:20,&#39;gender&#39;:&#39;male&#39;&#125;,</span><br><span class="line">     &#123;&#39;name&#39;:&#39;xiaohong&#39;,&#39;age&#39;:18,&#39;gender&#39;:&#39;female&#39;&#125;,</span><br><span class="line">     &#123;&#39;name&#39;:&#39;xiaoli&#39;,&#39;age&#39;:19,&#39;gender&#39;:&#39;male&#39;&#125;]</span><br><span class="line">b &#x3D; sorted(a,key&#x3D;lambda x:x[&#39;age&#39;],reverse&#x3D;False)</span><br><span class="line">print(b)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#123;&#39;name&#39;: &#39;xiaohong&#39;, &#39;age&#39;: 18, &#39;gender&#39;: &#39;female&#39;&#125;, </span><br><span class="line">&#123;&#39;name&#39;: &#39;xiaoli&#39;, &#39;age&#39;: 19, &#39;gender&#39;: &#39;male&#39;&#125;, </span><br><span class="line">&#123;&#39;name&#39;: &#39;xiaoming&#39;, &#39;age&#39;: 20, &#39;gender&#39;: &#39;male&#39;&#125;]</span><br></pre></td></tr></table></figure>
+<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><h2 id="iter-object-sentinel"><a href="#iter-object-sentinel" class="headerlink" title="iter(object[,sentinel])"></a>iter(object[,sentinel])</h2><p>返回一个严格意义上的可迭代对象，其中，参数sentinel可有可无。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">In [21]: lst &#x3D; [1,3,5]</span><br><span class="line">In [22]: it &#x3D; iter(lst)</span><br><span class="line">In [23]: it</span><br><span class="line">Out[23]: &lt;list_iterator at 0x214b3886188&gt;</span><br><span class="line"></span><br><span class="line">In [26]: it.__next__()</span><br><span class="line">Out[26]: 1</span><br><span class="line"></span><br><span class="line">In [27]: it.__next__()</span><br><span class="line">Out[27]: 3</span><br><span class="line"></span><br><span class="line">In [28]: it.__next__()</span><br><span class="line">Out[28]: 5</span><br><span class="line"></span><br><span class="line">In [29]: it.__next__()</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-29-74e64ed6c80d&gt; in &lt;module&gt;</span><br><span class="line">----&gt; 1 it.__next__()</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br></pre></td></tr></table></figure>
+<h2 id="next-iterator-default"><a href="#next-iterator-default" class="headerlink" title="next(iterator,[,default])"></a>next(iterator,[,default])</h2><p>返回可迭代对象的下一个元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [129]: it &#x3D; iter([5,3,4,1])</span><br><span class="line"></span><br><span class="line">In [130]: next(it)</span><br><span class="line">Out[130]: 5</span><br><span class="line"></span><br><span class="line">In [131]: next(it)</span><br><span class="line">Out[131]: 3</span><br><span class="line"></span><br><span class="line">In [132]: next(it)</span><br><span class="line">Out[132]: 4</span><br><span class="line"></span><br><span class="line">In [133]: next(it)</span><br><span class="line">Out[133]: 1</span><br></pre></td></tr></table></figure>
+<p>当迭代到最后一个元素1时，再执行next，就会抛出StopItera，迭代器终止运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [135]: next(it)</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">StopIteration                        Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-135-bc1ab118995a&gt; in &lt;module&gt;</span><br><span class="line">----&gt; 1 next(it)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br></pre></td></tr></table></figure>
+<p>案例：定制一个递减迭代器<br>编写一个迭代器，通过循环语句，对某个正整数，依次递减1，直到0.<br>实现类Decrease，继承与Iterator对象，重写两个方法：<br>· <strong>iter</strong><br>· <strong>next</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line">class Decrease(Iterator):</span><br><span class="line">    def __init__(self,init):</span><br><span class="line">        self.init &#x3D; init</span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return self</span><br><span class="line">    def __next__(self):</span><br><span class="line">        while 0 &lt; self.init:</span><br><span class="line">            self.init -&#x3D; 1</span><br><span class="line">            return self.init</span><br><span class="line">        raise StopIteration</span><br><span class="line">descend_iter &#x3D; Decrease(6)</span><br><span class="line">for i in descend_iter:</span><br><span class="line">    print(i)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>核心要点：<br>· <strong>next</strong>名字不能变，实现定制的迭代逻辑。<br>· raise StopIteration：通过raise中断程序。</p>
+<h2 id="enumerate-iterable-start-0"><a href="#enumerate-iterable-start-0" class="headerlink" title="enumerate(iterable,start=0)"></a>enumerate(iterable,start=0)</h2><p>enumerate是一个很有用的内置函数，尤其是要用到列表索引时。他返回可枚举对象，也是一个迭代器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]</span><br><span class="line">for i,v in enumerate(s):</span><br><span class="line">    print(i,v)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">0 a</span><br><span class="line">1 b</span><br><span class="line">2 c</span><br></pre></td></tr></table></figure>
+<p>也可以手动执行next ，依次输出一个tuple</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [96]: enum &#x3D; enumerate(s)</span><br><span class="line"></span><br><span class="line">In [97]: next(enum)</span><br><span class="line">Out[97]: (0, &#39;a&#39;)</span><br><span class="line"></span><br><span class="line">In [98]: next(enum)</span><br><span class="line">Out[98]: (1, &#39;b&#39;)</span><br><span class="line"></span><br><span class="line">In [99]: next(enum)</span><br><span class="line">Out[99]: (2, &#39;c&#39;)</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/02/python-day13/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/" rel="tag">python 高阶函数</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/02/28/python-day12/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">python_day12_numpy基础</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: '/images/mario3.jpeg',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        氧气
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/mario3.jpeg" alt="SuperMario"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['Let&#39;s Play','',''],
+    startDelay: 0,
+    typeSpeed: 200,
+    loop: true,
+    backSpeed: 100,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>
