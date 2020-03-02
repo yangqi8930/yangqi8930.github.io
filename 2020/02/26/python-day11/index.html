@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    python_day9 |  SuperMario
+    python_day11 |  SuperMario
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-python-day9" class="article article-type-post" itemscope
+  <article id="post-python-day11" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  python_day9
+  python_day11
 </h1>
   
 
@@ -48,12 +48,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/22/python-day9/" class="article-date">
-  <time datetime="2020-02-22T10:22:59.000Z" itemprop="datePublished">2020-02-22</time>
+      <a href="/2020/02/26/python-day11/" class="article-date">
+  <time datetime="2020-02-26T02:42:38.000Z" itemprop="datePublished">2020-02-26</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/python-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">python 正则表达式</a>
+    <a class="article-category-link" href="/categories/python-%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">python 位置参数</a>
   </div>
 
       
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.1k字</span>
+            <span class="post-count">1.2k字</span>
         </span>
     </span>
 
@@ -99,21 +99,42 @@
       
 
       
-      <h1 id="Python-之正则表达式"><a href="#Python-之正则表达式" class="headerlink" title="Python 之正则表达式"></a>Python 之正则表达式</h1><a id="more"></a>
-<p>使用前先导入所需模块： re<br><code>import re</code><br>认识常用的元字符：<br>· . 匹配除 “\n” 和 “\r” 之外的任何单个字符。<br>· ^ 匹配字符串开始位置<br>· $ 匹配字符串中结束的位置<br>· * 前面的原子重复 0 次、1 次、多次<br>· ? 前面的原子重复 0 次或者 1 次<br>· + 前面的原子重复 1 次或多次<br>· {n} 前面的原子出现了 n 次<br>· {n,} 前面的原子至少出现 n 次<br>· {n,m} 前面的原子出现次数介于 n-m 之间<br>· ( ) 分组，输出需要的部分<br>认识常用的通用字符：<br>· \s 匹配空白字符<br>· \w 匹配任意字母/数字/下划线<br>· \W 和小写 w 相反，匹配任意字母/数字/下划线以外的字符<br>· \d 匹配十进制数字<br>· \D 匹配除了十进制数以外的值<br>· [0-9] 匹配一个 0~9 之间的数字<br>· [a-z] 匹配小写英文字母<br>· [A-Z] 匹配大写英文字母</p>
-<ol>
-<li>finditer匹配迭代器：返回左右子串匹配位置的迭代器<br><code>import re</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;山东省潍坊市青州第1中学高三1班&#39;</span><br><span class="line">pat &#x3D; &#39;1&#39;</span><br><span class="line">r &#x3D; re.finditer(pat,s)</span><br><span class="line">for i in r:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></li>
-<li>findall所有匹配<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;一共20行代码运行时间12.59s&#39;</span><br><span class="line">pat &#x3D; r&#39;\d+&#39;</span><br><span class="line">print(r)</span><br><span class="line">pat1 &#x3D; r&#39;\d+\.?\d+&#39; # ?表示匹配前一个字符0或者1次  .?表示匹配小数点0次或者一次</span><br><span class="line">r1 &#x3D; re.findall(pat1,s)</span><br><span class="line">print(r1)</span><br></pre></td></tr></table></figure>
-这个式子会有一个问题就是：<code>r&#39;\d+\.?\d+&#39;</code>后面的一个’\d+’，<br>至少要匹配一个数字，再加上前面那个’\d+’，表示这个式子至少要匹配两位数,所以当只有一位数时，无法匹配出来。<br>修改匹配细则如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D;&#39;一共2行代码运行时间12.59s&#39;</span><br><span class="line">pat2 &#x3D; r&#39;\d+\.?\d*&#39; #\d*表示匹配数字0次或更多次.</span><br><span class="line">r2 &#x3D; re.findall(pat2,s)</span><br><span class="line">print(r2)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;2&#39;, &#39;12.59&#39;]</span><br></pre></td></tr></table></figure></li>
-<li>匹配正整数:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [-16,1.5,11.43,10,5]</span><br><span class="line"># pat &#x3D; r&#39;^\d*$&#39;</span><br><span class="line"># pat &#x3D; r&#39;^[0-9]&#39;</span><br><span class="line">pat &#x3D; r&#39;^[0-9]\d*$&#39;</span><br><span class="line">r &#x3D; [i for i in s if re.match(pat,str(i))]</span><br><span class="line">print(r)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[10, 5]</span><br></pre></td></tr></table></figure></li>
-<li>re.I 忽略大小写<br>re.I是方法的可选参数，表示忽略大小写。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;That&#39;</span><br><span class="line">pat &#x3D; r&#39;t&#39;</span><br><span class="line">r &#x3D; re.finditer(pat,s,re.I)</span><br><span class="line">for i in r:</span><br><span class="line">    print(i.span())</span><br><span class="line"># 5. split分割单词</span><br><span class="line">s &#x3D; &#39;id\tname\taddress&#39;</span><br><span class="line">r &#x3D; s.split(&#39;\t&#39;)</span><br><span class="line">print(r)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;id&#39;, &#39;name&#39;, &#39;address&#39;]</span><br><span class="line">#  这是规则比较简单的字符串，都由\t分割</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;This,,,   module ; \t   provides|| regular ; &#39;</span><br><span class="line">pat &#x3D; r&#39;[,\s\t;|]+&#39;</span><br><span class="line">r &#x3D; re.split(pat,s)</span><br><span class="line">print(r)</span><br><span class="line"># 这就是比较复杂的字符串了，包含了很多分割符&#39;,;\t|&#39;和空格</span><br><span class="line">[&#39;This&#39;, &#39;module&#39;, &#39;provides&#39;, &#39;regular&#39;, &#39;&#39;]</span><br></pre></td></tr></table></figure></li>
-<li>sub替换匹配串<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; &quot;hello 12345,hello 456321&quot;</span><br><span class="line">pat &#x3D; re.compile(r&#39;\d+&#39;)</span><br><span class="line">m &#x3D; pat.sub(&quot;666&quot;,content)</span><br><span class="line">print(m)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">hello 666,hello 666</span><br></pre></td></tr></table></figure></li>
-<li>compile预编译<br>如果要用同一种匹配模式，做很多次匹配，可以使用compile预先编译/<br>案例：从一系列字符串中，挑选出所有的正浮点数.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [-16,&#39;good&#39;,1.5, 0.21231, -0.1124, &#39;11.43&#39;, 10, &#39;5e10&#39;,&#39;s0.13&#39;]</span><br><span class="line">pat &#x3D; r&#39;^[0-9]\.\d*$&#39;</span><br><span class="line">rec &#x3D; re.compile(pat)</span><br><span class="line">for i in s:</span><br><span class="line">    if rec.match(str(i)):</span><br><span class="line">        print(i)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">1.5</span><br><span class="line">0.21231</span><br></pre></td></tr></table></figure></li>
-<li>贪心捕获：正则模块中，根据某个模式串，匹配到结果<br>案例：待爬取的部分内容如下所示，现在想要提取标签<div>中的内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; &#39;&#39;&#39;&lt;h&gt;ddedadsad&lt;&#x2F;h&gt;&lt;div&gt;graph&lt;&#x2F;div&gt;&lt;div&gt;math&lt;&#x2F;div&gt;&#39;&#39;&#39;</span><br><span class="line">result &#x3D; re.findall(r&#39;&lt;div&gt;.*&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;&lt;div&gt;graph&lt;&#x2F;div&gt;&lt;div&gt;math&lt;&#x2F;div&gt;&#39;]</span><br><span class="line"># 如果将匹配字符串改为r&#39;&lt;div&gt;(.*)&lt;&#x2F;div&gt;&#39;</span><br><span class="line">result &#x3D; re.findall(r&#39;&lt;div&gt;(.*)&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;[&#39;graph&lt;&#x2F;div&gt;&lt;div&gt;math&#39;]</span><br><span class="line"># 该结果就没有&lt;div&gt;&lt;&#x2F;div&gt;标签了</span><br><span class="line"># 其中(.*)表示捕获任意多个字符，尽可能多的匹配字符，被称为贪心捕获</span><br></pre></td></tr></table></figure></li>
-<li>非贪心捕获<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result1 &#x3D; re.findall(r&#39;&lt;div&gt;(.*?)&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result1)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;graph&#39;, &#39;math&#39;]</span><br></pre></td></tr></table></figure>
-安装python包时添加镜像源：<br><code>pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple</code></li>
-</ol>
+      <h1 id="Python函数的5类参数使用详解"><a href="#Python函数的5类参数使用详解" class="headerlink" title="Python函数的5类参数使用详解"></a>Python函数的5类参数使用详解</h1><p>Python 五类参数：<br>· 位置参数<br>· 关键字参数<br>· 默认参数<br>· 可变位置参数<br>· 可变关键字参数</p>
+<a id="more"></a>
+<h2 id="定义参数"><a href="#定义参数" class="headerlink" title="定义参数"></a>定义参数</h2><p>如下定义一个函数f，只有一个参数a，a既可能为位置参数，也可能为关键字参数，这取决于调用函数f的传参。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; def f(a):</span><br><span class="line">...     print(f&#39;a:&#123;a&#125;&#39;)</span><br><span class="line">... </span><br><span class="line">&gt;&gt;&gt; f(1) # a 为位置参数</span><br><span class="line">a:1</span><br><span class="line">&gt;&gt;&gt; f(a&#x3D;1) # a 为关键字参数</span><br><span class="line">a:1</span><br></pre></td></tr></table></figure>
+<p>如果函数 f 定义如下：有一个默认值0:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def f(a&#x3D;0):</span><br><span class="line">    print(f&#39;a:&#123;a&#125;&#39;)</span><br></pre></td></tr></table></figure>
+<p>那么 a 就是<strong>默认参数</strong>，且默认值为0.<br>如果 f 的定义为如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def f(a,* b,** c):</span><br><span class="line">    print(f&#39;a:&#123;a&#125;,b:&#123;b&#125;,c:&#123;c&#125;&#39;)</span><br></pre></td></tr></table></figure>
+<p>· 出现一个带星号的参数b，这是可变位置参数.<br>· 出现两个星号的参数c，这是可变关键字参数。<br><strong>可变</strong>表示函数被赋值的变量个数市变化的。例如，可以这样调用函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f(1,2,3,w&#x3D;4,h&#x3D;5)</span><br><span class="line">&gt;&gt;&gt;a:1,b:(2, 3),c:&#123;&#39;w&#39;: 4, &#39;h&#39;: 5&#125;</span><br></pre></td></tr></table></figure>
+<p>参数b被传递2个值，参数c也被传递2个值。可变位置参数b被解析为元组，可变关键字参数被解析为字典。<br>如果这样调用函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f(1,2,w&#x3D;4)</span><br><span class="line">&gt;&gt;&gt;a:1,b:(2,),c:&#123;&#39;w&#39;: 4&#125;</span><br></pre></td></tr></table></figure>
+<p>参数b被传递 1 个值，参数c被传递 1 个值。所以称带星号的变量是可变的。</p>
+<h2 id="查看参数"><a href="#查看参数" class="headerlink" title="查看参数"></a>查看参数</h2><p>  可以借助Python 的inspect 模块查看参数的类型<br>  首先导入inspe模块：<br>  <code>from inspect import signature</code><br>  函数 f 定义为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  def f(a,*b):</span><br><span class="line">    print(f&#39;a:&#123;a&#125;,b:&#123;b&#125;&#39;)</span><br><span class="line">for name,val in signature(f).parameters.items():</span><br><span class="line">    print(name,val.kind)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">a POSITIONAL_OR_KEYWORD</span><br><span class="line">b VAR_POSITIONAL</span><br></pre></td></tr></table></figure><br>  可以看到，参数 a 只可能为位置参数或者关键字参数。参数 b 为可变位置参数.<br>  如果函数定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def f(*,a,**b):</span><br><span class="line">    print(f&#39;a:&#123;a&#125;,b:&#123;b&#125;&#39;)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">a KEYWORD_ONLY</span><br><span class="line">b VAR_KEYWORD</span><br></pre></td></tr></table></figure>
+<p>可以看到参数 a 只可能为关键字参数，因为 a 前面有个星号，星号后面的参数只可能为关键字参数。</p>
+<h2 id="传递规则"><a href="#传递规则" class="headerlink" title="传递规则"></a>传递规则</h2><p>常见六大类调用异常：<br>· SyntaxError: positional argument follows keyword argument，位置参数位于关键字参数后面<br>· TypeError: f() missing 1 required keyword-only argument: ‘b’，必须传递的关键字参数缺失<br>· SyntaxError: keyword argument repeated，关键字参数重复<br>· TypeError: f() missing 1 required positional argument: ‘b’，必须传递的位置参数缺失<br>· TypeError: f() got an unexpected keyword argument ‘a’，没有这个关键字参数<br>· TypeError: f() takes 0 positional arguments but 1 was given，不需要位置参数但却传递 1 个<br><strong>参数使用规则</strong><br><strong>规则一： 不带默认值的位置参数缺一不可</strong><br>函数调用时，根据函数定义的参数位置来传递参数，是最常见的参数类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def f(a):</span><br><span class="line">    return a</span><br><span class="line">f(1) # 这样传递参数值，参数a为位置参数</span><br></pre></td></tr></table></figure>
+<p>如下有两个参数，传递时必须两个都赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def f(a,b):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">In [107]: f(1)</span><br><span class="line"></span><br><span class="line">TypeError: f() missing 1 required positional argument: &#39;b&#39;</span><br></pre></td></tr></table></figure>
+<p><strong>规则二： 关键字参数必须在位置参数的右边</strong><br>在调用 f 时，通过键–值方式为函数形参传值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def f(a):</span><br><span class="line">print(f&#39;a:&#123;a&#125;&#39;)</span><br></pre></td></tr></table></figure>
+<p>参数 a 变为关键字参数：<br><code>f(a=1)</code><br>但是下面调用，就会出现：位置参数位于关键字参数后面的异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def f(a,b):</span><br><span class="line">    pass</span><br><span class="line">f(a&#x3D;1,20)</span><br><span class="line">&gt;&gt;&gt;SyntaxError: positional argument follows keyword argument</span><br></pre></td></tr></table></figure>
+<p><strong>规则三： 对于同一形参不能重复传值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def f(a,**b):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">In [113]: f(1,width&#x3D;20.,width&#x3D;30.)</span><br><span class="line"></span><br><span class="line">SyntaxError: keyword argument repeated</span><br></pre></td></tr></table></figure>
+<p><strong>规则四：默认参数的定义应该在位置形参右边</strong><br>在定义函数时，可以为形参提供默认值。<br>对于有默认值的形参，调用函数时，如果为该参数传值，则使用传入的值，否则使用默认值。<br>如下 b 是默认参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def f(a,b&#x3D;1):</span><br><span class="line">  print(f&#39;a:&#123;a&#125;, b:&#123;b&#125;&#39;)</span><br></pre></td></tr></table></figure>
+<p>默认参数通常应该定义成不可变类型。<br><strong>规则5:可变位置参数不能传入关键字参数</strong><br>如下定义的参数a 为可变位置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def f(*a):</span><br><span class="line">    print(a)</span><br><span class="line">f(1)</span><br><span class="line">&gt;&gt;&gt;1</span><br><span class="line">f(1,2,3)</span><br><span class="line">&gt;&gt;&gt;1,2,3</span><br></pre></td></tr></table></figure>
+<p>但是不能这么调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f(a&#x3D;1)</span><br><span class="line">TypeError: f() got an unexpected keyword argument &#39;a&#39;</span><br></pre></td></tr></table></figure>
+<p><strong>规则6:可变关键字参数不能传入位置参数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def f(**a):</span><br><span class="line">    print(a)</span><br><span class="line">f(a&#x3D;1)</span><br><span class="line">&gt;&gt;&gt;&#123;&#39;a&#39;:1&#125;</span><br><span class="line">f(a&#x3D;1,b&#x3D;2,width&#x3D;3)</span><br><span class="line">&gt;&gt;&gt;&#123;&#39;a&#39;:1,&#39;b&#39;:2,&#39;width&#39;:3&#125;</span><br></pre></td></tr></table></figure>
+<p>但是不能这么调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;f() takes 0 positional arguments but 1 was given</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -179,7 +200,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/22/python-day9/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/26/python-day11/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -197,19 +218,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/23/python-day10/" class="article-nav-link">
+      <a href="/2020/02/28/python-day12/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            python_day10
+            python_day12_numpy基础
           
         </div>
       </a>
     
     
-      <a href="/2020/02/20/python-day8/" class="article-nav-link">
+      <a href="/2020/02/23/python-day10/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">python_day8</div>
+        <div class="article-nav-title">python_day10</div>
       </a>
     
   </nav>

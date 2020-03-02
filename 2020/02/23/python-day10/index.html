@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">51字</span>
+            <span class="post-count">142字</span>
         </span>
     </span>
 
@@ -99,8 +99,10 @@
       
 
       
-      <p>Python 文件 IO 操作包括：<br>· 涉及文件读写操作<br>· 获取文件后缀名<br>· 批量修改后缀名<br>· 获取文件修改时间<br>· 压缩文件<br>· 加密文件</p>
-<h1 id="文件读操作"><a href="#文件读操作" class="headerlink" title="文件读操作"></a>文件读操作</h1>
+      <h1 id="Python-文件-IO-操作包括："><a href="#Python-文件-IO-操作包括：" class="headerlink" title="Python 文件 IO 操作包括："></a>Python 文件 IO 操作包括：</h1><p>· 涉及文件读写操作<br>· 获取文件后缀名<br>· 批量修改后缀名<br>· 获取文件修改时间<br>· 压缩文件<br>· 加密文件</p>
+<a id="more"></a>
+<h1 id="文件读操作"><a href="#文件读操作" class="headerlink" title="文件读操作"></a>文件读操作</h1><figure class="highlight plain"><figcaption><span>os</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def read_file(filename):</span><br><span class="line">    if os.path.exists(filename) is False:</span><br><span class="line">#首先要判断文件是否存在，如果存在则进行读取，不存在则抛出异常</span><br><span class="line">        raise FileNotFoundError(%s not exists%)</span><br><span class="line">def read_file(filename):</span><br><span class="line">    if os.path.exists(filename) is False:</span><br><span class="line">        raise FileNotFoundError(&#39;%s not exists%(filename,)&#39;)</span><br><span class="line">        f &#x3D; open(filename,encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">        content &#x3D; f.read()</span><br><span class="line">        f.close()#</span><br><span class="line">        return content</span><br><span class="line">print(read_file(&#39;&#x2F;Users&#x2F;yangqi&#x2F;Desktop&#x2F;hello.txt&#39;))</span><br></pre></td></tr></table></figure>
+
       
       <!-- reward -->
       
@@ -182,6 +184,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/02/26/python-day11/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            python_day11
+          
+        </div>
+      </a>
     
     
       <a href="/2020/02/22/python-day9/" class="article-nav-link">

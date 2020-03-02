@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    python_day9 |  SuperMario
+    python_day12_numpy基础 |  SuperMario
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-python-day9" class="article article-type-post" itemscope
+  <article id="post-python-day12" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  python_day9
+  python_day12_numpy基础
 </h1>
   
 
@@ -48,12 +48,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/22/python-day9/" class="article-date">
-  <time datetime="2020-02-22T10:22:59.000Z" itemprop="datePublished">2020-02-22</time>
+      <a href="/2020/02/28/python-day12/" class="article-date">
+  <time datetime="2020-02-28T07:01:01.000Z" itemprop="datePublished">2020-02-28</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/python-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">python 正则表达式</a>
+    <a class="article-category-link" href="/categories/numpy/">numpy</a>
   </div>
 
       
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.1k字</span>
+            <span class="post-count">433字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -99,20 +99,18 @@
       
 
       
-      <h1 id="Python-之正则表达式"><a href="#Python-之正则表达式" class="headerlink" title="Python 之正则表达式"></a>Python 之正则表达式</h1><a id="more"></a>
-<p>使用前先导入所需模块： re<br><code>import re</code><br>认识常用的元字符：<br>· . 匹配除 “\n” 和 “\r” 之外的任何单个字符。<br>· ^ 匹配字符串开始位置<br>· $ 匹配字符串中结束的位置<br>· * 前面的原子重复 0 次、1 次、多次<br>· ? 前面的原子重复 0 次或者 1 次<br>· + 前面的原子重复 1 次或多次<br>· {n} 前面的原子出现了 n 次<br>· {n,} 前面的原子至少出现 n 次<br>· {n,m} 前面的原子出现次数介于 n-m 之间<br>· ( ) 分组，输出需要的部分<br>认识常用的通用字符：<br>· \s 匹配空白字符<br>· \w 匹配任意字母/数字/下划线<br>· \W 和小写 w 相反，匹配任意字母/数字/下划线以外的字符<br>· \d 匹配十进制数字<br>· \D 匹配除了十进制数以外的值<br>· [0-9] 匹配一个 0~9 之间的数字<br>· [a-z] 匹配小写英文字母<br>· [A-Z] 匹配大写英文字母</p>
-<ol>
-<li>finditer匹配迭代器：返回左右子串匹配位置的迭代器<br><code>import re</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;山东省潍坊市青州第1中学高三1班&#39;</span><br><span class="line">pat &#x3D; &#39;1&#39;</span><br><span class="line">r &#x3D; re.finditer(pat,s)</span><br><span class="line">for i in r:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></li>
-<li>findall所有匹配<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;一共20行代码运行时间12.59s&#39;</span><br><span class="line">pat &#x3D; r&#39;\d+&#39;</span><br><span class="line">print(r)</span><br><span class="line">pat1 &#x3D; r&#39;\d+\.?\d+&#39; # ?表示匹配前一个字符0或者1次  .?表示匹配小数点0次或者一次</span><br><span class="line">r1 &#x3D; re.findall(pat1,s)</span><br><span class="line">print(r1)</span><br></pre></td></tr></table></figure>
-这个式子会有一个问题就是：<code>r&#39;\d+\.?\d+&#39;</code>后面的一个’\d+’，<br>至少要匹配一个数字，再加上前面那个’\d+’，表示这个式子至少要匹配两位数,所以当只有一位数时，无法匹配出来。<br>修改匹配细则如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D;&#39;一共2行代码运行时间12.59s&#39;</span><br><span class="line">pat2 &#x3D; r&#39;\d+\.?\d*&#39; #\d*表示匹配数字0次或更多次.</span><br><span class="line">r2 &#x3D; re.findall(pat2,s)</span><br><span class="line">print(r2)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;2&#39;, &#39;12.59&#39;]</span><br></pre></td></tr></table></figure></li>
-<li>匹配正整数:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [-16,1.5,11.43,10,5]</span><br><span class="line"># pat &#x3D; r&#39;^\d*$&#39;</span><br><span class="line"># pat &#x3D; r&#39;^[0-9]&#39;</span><br><span class="line">pat &#x3D; r&#39;^[0-9]\d*$&#39;</span><br><span class="line">r &#x3D; [i for i in s if re.match(pat,str(i))]</span><br><span class="line">print(r)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[10, 5]</span><br></pre></td></tr></table></figure></li>
-<li>re.I 忽略大小写<br>re.I是方法的可选参数，表示忽略大小写。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;That&#39;</span><br><span class="line">pat &#x3D; r&#39;t&#39;</span><br><span class="line">r &#x3D; re.finditer(pat,s,re.I)</span><br><span class="line">for i in r:</span><br><span class="line">    print(i.span())</span><br><span class="line"># 5. split分割单词</span><br><span class="line">s &#x3D; &#39;id\tname\taddress&#39;</span><br><span class="line">r &#x3D; s.split(&#39;\t&#39;)</span><br><span class="line">print(r)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;id&#39;, &#39;name&#39;, &#39;address&#39;]</span><br><span class="line">#  这是规则比较简单的字符串，都由\t分割</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; &#39;This,,,   module ; \t   provides|| regular ; &#39;</span><br><span class="line">pat &#x3D; r&#39;[,\s\t;|]+&#39;</span><br><span class="line">r &#x3D; re.split(pat,s)</span><br><span class="line">print(r)</span><br><span class="line"># 这就是比较复杂的字符串了，包含了很多分割符&#39;,;\t|&#39;和空格</span><br><span class="line">[&#39;This&#39;, &#39;module&#39;, &#39;provides&#39;, &#39;regular&#39;, &#39;&#39;]</span><br></pre></td></tr></table></figure></li>
-<li>sub替换匹配串<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; &quot;hello 12345,hello 456321&quot;</span><br><span class="line">pat &#x3D; re.compile(r&#39;\d+&#39;)</span><br><span class="line">m &#x3D; pat.sub(&quot;666&quot;,content)</span><br><span class="line">print(m)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">hello 666,hello 666</span><br></pre></td></tr></table></figure></li>
-<li>compile预编译<br>如果要用同一种匹配模式，做很多次匹配，可以使用compile预先编译/<br>案例：从一系列字符串中，挑选出所有的正浮点数.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; [-16,&#39;good&#39;,1.5, 0.21231, -0.1124, &#39;11.43&#39;, 10, &#39;5e10&#39;,&#39;s0.13&#39;]</span><br><span class="line">pat &#x3D; r&#39;^[0-9]\.\d*$&#39;</span><br><span class="line">rec &#x3D; re.compile(pat)</span><br><span class="line">for i in s:</span><br><span class="line">    if rec.match(str(i)):</span><br><span class="line">        print(i)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">1.5</span><br><span class="line">0.21231</span><br></pre></td></tr></table></figure></li>
-<li>贪心捕获：正则模块中，根据某个模式串，匹配到结果<br>案例：待爬取的部分内容如下所示，现在想要提取标签<div>中的内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; &#39;&#39;&#39;&lt;h&gt;ddedadsad&lt;&#x2F;h&gt;&lt;div&gt;graph&lt;&#x2F;div&gt;&lt;div&gt;math&lt;&#x2F;div&gt;&#39;&#39;&#39;</span><br><span class="line">result &#x3D; re.findall(r&#39;&lt;div&gt;.*&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;&lt;div&gt;graph&lt;&#x2F;div&gt;&lt;div&gt;math&lt;&#x2F;div&gt;&#39;]</span><br><span class="line"># 如果将匹配字符串改为r&#39;&lt;div&gt;(.*)&lt;&#x2F;div&gt;&#39;</span><br><span class="line">result &#x3D; re.findall(r&#39;&lt;div&gt;(.*)&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;[&#39;graph&lt;&#x2F;div&gt;&lt;div&gt;math&#39;]</span><br><span class="line"># 该结果就没有&lt;div&gt;&lt;&#x2F;div&gt;标签了</span><br><span class="line"># 其中(.*)表示捕获任意多个字符，尽可能多的匹配字符，被称为贪心捕获</span><br></pre></td></tr></table></figure></li>
-<li>非贪心捕获<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result1 &#x3D; re.findall(r&#39;&lt;div&gt;(.*?)&lt;&#x2F;div&gt;&#39;,content)</span><br><span class="line">print(result1)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[&#39;graph&#39;, &#39;math&#39;]</span><br></pre></td></tr></table></figure>
-安装python包时添加镜像源：<br><code>pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple</code></li>
+      <h1 id="Numpy-基础：数组和矢量计算"><a href="#Numpy-基础：数组和矢量计算" class="headerlink" title="Numpy 基础：数组和矢量计算"></a>Numpy 基础：数组和矢量计算</h1><h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1><a id="more"></a>
+<p>Numpy最重要的特点是N维数组对象（即ndarray），该对象是一个快速而灵活的大数据集容器。</p>
+<h2 id="创建ndarray"><a href="#创建ndarray" class="headerlink" title="创建ndarray"></a>创建ndarray</h2><ol>
+<li>使用array函数<br>创建数组最简单的办法就是使用array函数，它接受一切序列型的对象（包括其他数组），然后产生一个新的含有传入数据的numpy数组。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [19]: data1 &#x3D; [6, 7.5, 8, 0, 1] </span><br><span class="line">In [20]: arr1 &#x3D; np.array(data1)</span><br><span class="line">In [21]: arr1</span><br><span class="line">Out[21]: array([ 6. , 7.5, 8. , 0. , 1. ])</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>zeros和ones可以创建全0或全1的数组，empty可以创建一个没有任何具体值的数组。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">In [29]:np.zeros(10)</span><br><span class="line">Out[29]:array([ 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])</span><br><span class="line">In [30]:np.zeros((3, 6))</span><br><span class="line">Out[30]:  </span><br><span class="line">array([[0., 0., 0., 0., 0., 0.],</span><br><span class="line">       [0., 0., 0., 0., 0., 0.], </span><br><span class="line">       [0., 0., 0., 0., 0., 0.]])</span><br><span class="line">In [31]:np.empty((2, 3, 2))</span><br><span class="line">Out[31]:</span><br><span class="line">array([[[ 0., 0.],</span><br><span class="line">       [ 0., 0.],</span><br><span class="line">       [ 0., 0.]], </span><br><span class="line">       [[ 0., 0.], </span><br><span class="line">       [ 0., 0.],</span><br><span class="line">       [ 0., 0.]]])</span><br></pre></td></tr></table></figure>
+arange是Python内置函数的range的数组版：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [32]: np.arange(15)</span><br><span class="line">Out[32]: array([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])</span><br></pre></td></tr></table></figure></li>
+<li>ndarray的数据类型<br>dtype是一个特殊的对象，它含有ndarray将一块内存解释为特定数据类型所需的信息：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [33]: arr1 &#x3D; np.array([1, 2, 3], dtype&#x3D;np.float64) In [34]: arr2 &#x3D; np.array([1, 2, 3], dtype&#x3D;np.int32)</span><br><span class="line">In [35]: arr1.dtype Out[35]: dtype(&#39;float64&#39;)</span><br><span class="line">In [36]: arr2.dtype Out[36]: dtype(&#39;int32&#39;)</span><br></pre></td></tr></table></figure>
+可以通过ndarray的astype方法，明确的将一个数组从一个dtype转换成另一个dtype:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [37]: arr &#x3D; np.array([1, 2, 3, 4, 5]) In [38]: arr.dtype</span><br><span class="line">Out[38]: dtype(&#39;int64&#39;)</span><br><span class="line">In [39]: float_arr &#x3D; arr.astype(np.float64)</span><br><span class="line">In [40]: float_arr.dtype Out[40]: dtype(&#39;float64&#39;)</span><br></pre></td></tr></table></figure></li>
+<li>numpy数组的运算<br>不同大小的数组之间的运算叫做<strong>广播</strong>。</li>
+</ol>
+</li>
 </ol>
 
       
@@ -179,14 +177,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/22/python-day9/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/28/python-day12/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-numpy/" rel="tag">python numpy</a></li></ul>
 
 
     </footer>
@@ -197,19 +195,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/23/python-day10/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            python_day10
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/02/20/python-day8/" class="article-nav-link">
+      <a href="/2020/02/26/python-day11/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">python_day8</div>
+        <div class="article-nav-title">python_day11</div>
       </a>
     
   </nav>
