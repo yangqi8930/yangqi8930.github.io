@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">433字</span>
+            <span class="post-count">556字</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
 
       
       <h1 id="Numpy-基础：数组和矢量计算"><a href="#Numpy-基础：数组和矢量计算" class="headerlink" title="Numpy 基础：数组和矢量计算"></a>Numpy 基础：数组和矢量计算</h1><h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1><a id="more"></a>
-<p>Numpy最重要的特点是N维数组对象（即ndarray），该对象是一个快速而灵活的大数据集容器。</p>
+<p>Numpy部分功能如下：<br>· ndarray ，一个具有矢量算术运算和复杂广播能力的快速且节省空间的多维数组。<br>· 用于对整组数据进行快速运算的标准数学函数（无需编写循环）。<br>· 用于读写磁盘数据的工具以及用于操作内存映射文件的工具。<br>· 线性代数、随机数生成以及傅立叶变换功能。<br>· 用于集成由C、C++等语言编写的代码。<br>Numpy最重要的特点是N维数组对象（即ndarray），该对象是一个快速而灵活的大数据集容器。</p>
 <h2 id="创建ndarray"><a href="#创建ndarray" class="headerlink" title="创建ndarray"></a>创建ndarray</h2><ol>
 <li>使用array函数<br>创建数组最简单的办法就是使用array函数，它接受一切序列型的对象（包括其他数组），然后产生一个新的含有传入数据的numpy数组。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [19]: data1 &#x3D; [6, 7.5, 8, 0, 1] </span><br><span class="line">In [20]: arr1 &#x3D; np.array(data1)</span><br><span class="line">In [21]: arr1</span><br><span class="line">Out[21]: array([ 6. , 7.5, 8. , 0. , 1. ])</span><br></pre></td></tr></table></figure>
 <ol start="2">

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    python_day14_python多线程 |  SuperMario
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/mario3.jpeg" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-python-day14" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  python_day14_python多线程
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/03/python-day14/" class="article-date">
+  <time datetime="2020-03-03T03:14:14.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.9k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="python多线程和协程6方面"><a href="#python多线程和协程6方面" class="headerlink" title="python多线程和协程6方面"></a>python多线程和协程6方面</h1><a id="more"></a>
+<h2 id="多线程铺垫"><a href="#多线程铺垫" class="headerlink" title="多线程铺垫"></a>多线程铺垫</h2><p>线程相关模块为： threading。<br>首先导入相关模块： <code>import threading</code><br>threading的方法current_thread()返回当前线程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">t &#x3D; threading.current_thread()</span><br><span class="line">print(t)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&lt;_MainThread(MainThread, started 4701781440)&gt;</span><br></pre></td></tr></table></figure>
+<p>验证了程序默认实在MainThead中执行的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t.getName() # 获取这个线程的名字</span><br><span class="line">&#39;MainThread&#39;</span><br><span class="line">&gt;&gt;&gt; t.ident # 获取这个线程的ID</span><br><span class="line">4570238400</span><br><span class="line">&gt;&gt;&gt; t.is_alive() #该线程是否存活</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h2 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h2><p><code>my_thread = threading.Thread(name=&#39;my_thread&#39;) #创建一个名叫my_thread的线程</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">my_thread &#x3D; threading.Thread(name&#x3D;&#39;my_thread&#39;)</span><br><span class="line">def print_i(i):</span><br><span class="line">    print(&#39;打印i:%d&#39;%(i,))</span><br><span class="line">    my_thread &#x3D; threading.Thread(target&#x3D;print_i,args&#x3D;(1,)) #通过参数 target 告诉这个线程需要帮我们做什么。参数类型为callable。args指定函数print_i需要的参数i。</span><br><span class="line">    my_thread.start() #启动线程</span><br></pre></td></tr></table></figure>
+<p>打印结果：<br><code>打印i:1</code></p>
+<h2 id="交替获得CPU时间片"><a href="#交替获得CPU时间片" class="headerlink" title="交替获得CPU时间片"></a>交替获得CPU时间片</h2><p>开辟3个线程，装载到threads中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">import time</span><br><span class="line">def print_time():</span><br><span class="line">    for _ in range(5):</span><br><span class="line">        time.sleep(0.1)</span><br><span class="line">        print(&#39;当前线程%s,打印结束时间为：%s&#39;%(threading.current_thread().getName(),time.time()))</span><br><span class="line">threads &#x3D; [threading.Thread(name&#x3D;&#39;t%d&#39;%(i,),target&#x3D;print_time) for i in range(3)]</span><br><span class="line">[t.start() for t in threads]</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">当前线程t0,打印结束时间为：1583217743.7846</span><br><span class="line">当前线程t1,打印结束时间为：1583217743.784727</span><br><span class="line">当前线程t2,打印结束时间为：1583217743.7847471</span><br><span class="line">当前线程t0,打印结束时间为：1583217743.884841</span><br><span class="line">当前线程t1,打印结束时间为：1583217743.885018</span><br><span class="line">当前线程t2,打印结束时间为：1583217743.885053</span><br><span class="line">当前线程t2,打印结束时间为：1583217743.98564</span><br><span class="line">当前线程t1,打印结束时间为：1583217743.985677</span><br><span class="line"></span><br><span class="line">当前线程t0,打印结束时间为：1583217743.9858088</span><br><span class="line">当前线程t1,打印结束时间为：1583217744.0878239</span><br><span class="line">当前线程t2,打印结束时间为：1583217744.0879512</span><br><span class="line">当前线程t0,打印结束时间为：1583217744.088007</span><br><span class="line">当前线程t1,打印结束时间为：1583217744.187995</span><br><span class="line">当前线程t2,打印结束时间为：1583217744.18817</span><br><span class="line">当前线程t0,打印结束时间为：1583217744.188266</span><br></pre></td></tr></table></figure>
+<p>根据操作系统的调度算法，t0,t1,t2三个线程轮询获得CPU时间片。</p>
+<h2 id="抢夺全局变量"><a href="#抢夺全局变量" class="headerlink" title="抢夺全局变量"></a>抢夺全局变量</h2><p>  全局变量，被当前进程中所有存活线程共享，这就j意味着，抢夺全局变量的问题。<br>  如下面的例子，创建10个线程，他们都会竞争全局变量a：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">a &#x3D; 0</span><br><span class="line">def add1():</span><br><span class="line">    global a</span><br><span class="line">    a +&#x3D; 1</span><br><span class="line">    print(&#39;%s adds a to 1: %d&#39;%(threading.current_thread().getName(),a))</span><br><span class="line">threads &#x3D; [threading.Thread(name&#x3D;&#39;t%d&#39;%(i,),target&#x3D;add1) for i in range(10)]</span><br><span class="line">[t.start() for t in threads]</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">t0 adds a to 1: 1</span><br><span class="line">t1 adds a to 1: 2</span><br><span class="line">t2 adds a to 1: 3</span><br><span class="line">t3 adds a to 1: 4</span><br><span class="line">t4 adds a to 1: 5</span><br><span class="line">t5 adds a to 1: 6</span><br><span class="line">t6 adds a to 1: 7</span><br><span class="line">t7 adds a to 1: 8</span><br><span class="line">t8 adds a to 1: 9</span><br><span class="line">t9 adds a to 1: 10</span><br></pre></td></tr></table></figure>
+<p>但是这段代码<strong>线程不安全</strong>。编写多线程程序，只要有读取和修改全局变量的情况，如果不采取措施，就<strong>一定不是线程安全的</strong>。</p>
+<h2 id="暴露问题"><a href="#暴露问题" class="headerlink" title="暴露问题"></a>暴露问题</h2><p>数据写入数据库操作，一般会耗费可以感知的时间，为模拟数据写裤动作，简化起见，等效的延长修改变量a 的时间，问题就能很快还原出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">import time</span><br><span class="line">a &#x3D; 0</span><br><span class="line">def add1():</span><br><span class="line">    global a</span><br><span class="line">    tmp &#x3D; a +1</span><br><span class="line">    time.sleep(0.2) # 延时 0.2 秒，模拟写入需要的时间</span><br><span class="line">    a &#x3D; tmp</span><br><span class="line">    print(&#39;%s adds a to 1: %d&#39;%(threading.current_thread().getName(),a))</span><br><span class="line">threads &#x3D; [threading.Thread(name&#x3D;&#39;t%d&#39;%(i,),target&#x3D;add1) for i in range(10)]</span><br><span class="line">[t.start() for  t in threads]</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">t0 adds a to 1: 1</span><br><span class="line">t1 adds a to 1: 1</span><br><span class="line">t2 adds a to 1: 1</span><br><span class="line">t4 adds a to 1: 1</span><br><span class="line">t6 adds a to 1: 1</span><br><span class="line">t3 adds a to 1: 1</span><br><span class="line">t8 adds a to 1: 1</span><br><span class="line">t9 adds a to 1: 1</span><br><span class="line">t5 adds a to 1: 1</span><br><span class="line">t7 adds a to 1: 1</span><br></pre></td></tr></table></figure>
+<p>看到10个线程全部运行后，a的值只相当于一个线程执行的结果，这是为什么？<br>修改a 前，有0.2 秒的休眠时间，某个线程被延时后，cpu立即分配计算资源给其他线程。直到所有线程被分配到计算资源，已经运行完 a=a+1后，根据结果反映出，0.2秒的休眠时间还没有耗尽，<br>这样每个线程获取到的a值都是0，<br>因此出现了上面的结果。</p>
+<h2 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h2><p>Python提供的锁机制，是解决上面问题的方法之一。<br>某段代码只能单线程执行，加上锁，其他线程等待，直到被释放后，其他线程再争锁，竞争到锁的线程执行代码，再释放锁，重复此过程，直到所有线程都走过一遍竞争到锁和释放锁的过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">import time</span><br><span class="line">locka &#x3D; threading.Lock() #创建一把锁locka</span><br><span class="line">a &#x3D; 0</span><br><span class="line">def add1():</span><br><span class="line">    global a</span><br><span class="line">    try:</span><br><span class="line">        locka.acquire() # 获得锁</span><br><span class="line">        tmp &#x3D; a +1</span><br><span class="line">        time.sleep(0.2) # 延时 0.2 秒，模拟写入需要的时间</span><br><span class="line">        a &#x3D; tmp</span><br><span class="line">    finally:</span><br><span class="line">        locka.release() # 释放锁</span><br><span class="line">    print(&#39;%s  adds a to 1: %d&#39;%(threading.current_thread().getName(),a))</span><br><span class="line">threads &#x3D; [threading.Thread(name&#x3D;&#39;t%d&#39;%(i,),target&#x3D;add1) for i in range(10)]</span><br><span class="line">[t.start() for t in threads]</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">t0  adds a to 1: 1</span><br><span class="line">t1  adds a to 1: 2</span><br><span class="line">t2  adds a to 1: 3</span><br><span class="line">t3  adds a to 1: 4</span><br><span class="line">t4  adds a to 1: 5</span><br><span class="line">t5  adds a to 1: 6</span><br><span class="line">t6  adds a to 1: 7</span><br><span class="line">t7  adds a to 1: 8</span><br><span class="line">t8  adds a to 1: 9</span><br><span class="line">t9  adds a to 1: 10</span><br></pre></td></tr></table></figure>
+<p>打印结果一切正常。<br>但是，再仔细想想，这已经是单线程顺序执行。就本案例而言，已经失去多线程的价值。并且，还带来了因为线程创建开销，浪费时间的副作用。除此之外，还有一个很大风险。<br>当程序中只有一把锁，通过 try…finally 还能确保不发生死锁。但是，当程序中启用多把锁，很容易发生死锁。<br>考虑使用场合，避免死锁，是多线程开发，需要格外注意的一些问题。</p>
+<h2 id="高效的协程"><a href="#高效的协程" class="headerlink" title="高效的协程"></a>高效的协程</h2><p>在同一个线程中，如果发生以下事情：<br>· A 函数执行时被中断，传递一些数据给 B 函数；<br>· B 函数拿到这些数据后开始执行，执行一段时间后，发送一些数据到 A 函数；<br>· 就这样交替执行……<br>这种执行调用模式，被称为<strong>协程</strong><br>可以看到的是，协程是在同一线程中函数间的切换，而不是线程间的切换，因此执行效率更优。<br>python的异步操作正式基于高效的协程机制。<br>如下一个案例，可以加深对协程的理解。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def A():</span><br><span class="line">    a_list &#x3D; [&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line">    for to_b in a_list:</span><br><span class="line">        from_b &#x3D; yield to_b</span><br><span class="line">        print(&#39;receive %s from B&#39; %(from_b,))</span><br><span class="line">        print(&#39;do some complex process for A during 200ms&#39;)</span><br><span class="line">def B():</span><br><span class="line">    from_a &#x3D; a.send(None)</span><br><span class="line">    print(&#39;response %s from A&#39;%(from_a,))</span><br><span class="line">    print(&#39;B is analysising data from A&#39;)</span><br><span class="line">    b_list &#x3D; [&#39;x&#39;,&#39;y&#39;,&#39;z&#39;]</span><br><span class="line">    try:</span><br><span class="line">        for to_a in b_list:</span><br><span class="line">            from_a &#x3D; a.send(to_a)</span><br><span class="line">            print(&#39;response %s from A&#39;%(from_a,))</span><br><span class="line">            print(&#39;B is analysising data from A&#39;)</span><br><span class="line">    except StopIteration:</span><br><span class="line">        print(&#39;---from a done---&#39;)</span><br><span class="line">    finally:</span><br><span class="line">        a.close()</span><br><span class="line">a &#x3D; A()</span><br><span class="line">B()</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">response 1 from A</span><br><span class="line">B is analysising data from A</span><br><span class="line">receive x from B</span><br><span class="line">do some complex process for A during 200ms</span><br><span class="line">response 2 from A</span><br><span class="line">B is analysising data from A</span><br><span class="line">receive y from B</span><br><span class="line">do some complex process for A during 200ms</span><br><span class="line">response 3 from A</span><br><span class="line">B is analysising data from A</span><br><span class="line">receive z from B</span><br><span class="line">do some complex process for A during 200ms</span><br><span class="line">---from a done---</span><br></pre></td></tr></table></figure>
+<p>通过上述看到，协程是在同一个线程中，不同函数间交替的、协作的执行完成任务。<br>而多线程是抢占时间片的编程模型，通过第 5节提到的获得锁和释放锁的机制<br>控制全局变量的读取和修改，容易出现死锁。<br>但是协程无需使用锁，也就不会发生死锁。同时，利用协程的协作这一特点，高效地完成了原编程模型只能通过多个线程才能完成的任务。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/03/python-day14/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">python 多线程</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/03/02/python-day13/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">python_day13_高阶函数</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: '/images/mario3.jpeg',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        氧气
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/mario3.jpeg" alt="SuperMario"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['Let&#39;s Play','',''],
+    startDelay: 0,
+    typeSpeed: 200,
+    loop: true,
+    backSpeed: 100,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>
