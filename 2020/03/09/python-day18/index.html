@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    python_day4_杂记 |  SuperMario
+    python_day18 |  SuperMario
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-python-day4" class="article article-type-post" itemscope
+  <article id="post-python-day18" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  python_day4_杂记
+  python_day18
 </h1>
   
 
@@ -48,12 +48,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/16/python-day4/" class="article-date">
-  <time datetime="2020-02-16T08:54:11.000Z" itemprop="datePublished">2020-02-16</time>
+      <a href="/2020/03/09/python-day18/" class="article-date">
+  <time datetime="2020-03-09T14:39:36.000Z" itemprop="datePublished">2020-03-09</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/python/">python</a>
+    <a class="article-category-link" href="/categories/Numpy/">Numpy</a>
   </div>
 
       
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">421字</span>
+            <span class="post-count">538字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -99,22 +99,18 @@
       
 
       
-      <h1 id="Python-的一些杂记"><a href="#Python-的一些杂记" class="headerlink" title="Python 的一些杂记"></a>Python 的一些杂记</h1><a id="more"></a>
-<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><h3 id="用迭代生成列表"><a href="#用迭代生成列表" class="headerlink" title="用迭代生成列表"></a>用迭代生成列表</h3><p>如何生成一个[1<em>1, 2</em>2,3<em>3,…,n</em>n]的列表？<br>方法一：使用for循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L &#x3D; []</span><br><span class="line">for i in range(1,n)</span><br><span class="line">L.append(i**)</span><br><span class="line">print L</span><br></pre></td></tr></table></figure>
-<p>方法二：列表生成式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[i*i for i in range(1,n)]</span><br><span class="line"># 使用列表生成式时，把要生成的元素 i*i 放在前面，后面跟 for 循环，就可以把 list 创建出来</span><br></pre></td></tr></table></figure>
-<h2 id="字符串的连接"><a href="#字符串的连接" class="headerlink" title="字符串的连接"></a>字符串的连接</h2><ol>
-<li>加号连接：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print &#39;python&#39;+&#39;tab&#39;</span><br><span class="line">pythontab</span><br></pre></td></tr></table></figure></li>
-<li>逗号连接：<br>逗号连接比较特殊，使用逗号连接两个字符串，如果两个字符串用‘逗号’隔开，那么这两个字符串将被连接，但是字符串之间会多处一个空格。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print &#39;python&#39;，&#39;tab&#39;</span><br><span class="line">python tab</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>直接连接：<br>这是python独有的，只要把两个字符串放在一起，中间有空白或者没有空白，这两个字符串将自动连接为一个字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print &#39;python&#39;&#39;tab&#39;</span><br><span class="line">pythontab</span><br><span class="line">print &#39;python&#39;  &#39;tab&#39;</span><br><span class="line">pythontab</span><br></pre></td></tr></table></figure></li>
-<li>格式化：<br>借鉴了C语言中的printf函数的功能。用符号’%’连接一个字符串和z一组变量，字符串的r特殊标记会自动被右边变量组中的变量替换：<br>print ‘’<ol start="5">
-<li>python 中的各种转义字符：<br>(在行尾时)    续行符<br>\    反斜杠符号<br>\’    单引号<br>\”    双引号<br>\a    响铃<br>\b    退格(Backspace)<br>\e    转义<br>\000    空<br>\n    换行<br>\v    纵向制表符<br>\t    横向制表符<br>\r    回车<br>\f    换页<br>\oyy    八进制数yy代表的字符，例如：\o12代表换行<br>\xyy    十进制数yy代表的字符，例如：\x0a代表换行<br>\other    其它的字符以普通格式输出</li>
-</ol>
-</li>
-</ol>
-</li>
+      <p>学好Numpy的一个重要理由在于，它在处理更大数据量时，处理效率明显快于python，并且内置的向量化运算和广播机制，使得使用numpy更加简洁，会少些很多for循环，因此代码的可读性大大增强。<br>Numpy计算快的原因：</p>
+<ol>
+<li>python的list是一个通用结构，它能包括任意类型的对象，并且是动态类型。</li>
+<li>numpy的ndarray是静态、同质的类型，当ndarray对象被创建时，元素的类型就确定了，由于是静态类型，所以ndarray间的加、减、乘、除 用C和Fortran实现才成为可能，所以运行起来就会更快。底层代码用C语言和Fortran实现，实现性能无限接近C的处理效率。<h1 id="创建Numpy数组"><a href="#创建Numpy数组" class="headerlink" title="创建Numpy数组"></a>创建Numpy数组</h1><h2 id="通过构造函数array-创建一维-array"><a href="#通过构造函数array-创建一维-array" class="headerlink" title="通过构造函数array 创建一维 array"></a>通过构造函数array 创建一维 array</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">v &#x3D; np.array([1,2,3,4])</span><br><span class="line">In [3]: v</span><br><span class="line">Out[3]: array([1, 2, 3, 4])</span><br></pre></td></tr></table></figure>
+<h2 id="创建二维array"><a href="#创建二维array" class="headerlink" title="创建二维array"></a>创建二维array</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [4]: m &#x3D; array([[1,2],[3,4]])</span><br><span class="line">In [5]: m</span><br><span class="line">Out[5]:</span><br><span class="line">array([[1, 2],</span><br><span class="line">       [3, 4]])</span><br></pre></td></tr></table></figure>
+<h2 id="arange数组"><a href="#arange数组" class="headerlink" title="arange数组"></a>arange数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [94]: ara &#x3D; np.arange(1,10)</span><br><span class="line">In [95]: ara</span><br><span class="line">Out[95]: array([1, 2, 3, 4, 5, 6, 7, 8, 9])</span><br></pre></td></tr></table></figure>
+<h2 id="linspace数组，15个元素"><a href="#linspace数组，15个元素" class="headerlink" title="linspace数组，15个元素"></a>linspace数组，15个元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [97]: np.linspace(1,10,15)</span><br><span class="line">Out[97]:</span><br><span class="line">array([ 1.        ,  1.64285714,  2.28571429,  2.92857143,  3.57142857,</span><br><span class="line">        4.21428571,  4.85714286,  5.5       ,  6.14285714,  6.78571429,</span><br><span class="line">        7.42857143,  8.07142857,  8.71428571,  9.35714286, 10.        ])</span><br></pre></td></tr></table></figure>
+<h2 id="组合-ndarray-对象"><a href="#组合-ndarray-对象" class="headerlink" title="组合 ndarray 对象"></a>组合 ndarray 对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [98]: a &#x3D; np.arange(10).reshape(2,-1) # reshape(2,-1) ，-1 表示行数固定为两行，列数由计算得出。</span><br><span class="line">In [99]: a</span><br><span class="line">Out[99]:</span><br><span class="line">array([[0, 1, 2, 3, 4],</span><br><span class="line">       [5, 6, 7, 8, 9]])</span><br></pre></td></tr></table></figure>
+找出a中大于3的元素索引，使用where方法，返回一个元组，带有两个ndarray对象，分别表示大于3的元素第一维、第二维度中的位置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [100]: np.where(a&gt;3)</span><br><span class="line">Out[100]:</span><br><span class="line">(array([0, 1, 1, 1, 1, 1], dtype&#x3D;int64),</span><br><span class="line"> array([4, 0, 1, 2, 3, 4], dtype&#x3D;int64))</span><br><span class="line"> # 竖着看</span><br></pre></td></tr></table></figure>
+where方法返回值可读性不强，我们把它拼接为一个ndarray对象：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.array(np.where(c&gt;3))</span><br><span class="line">array([[0, 1, 1, 1, 1, 1],</span><br><span class="line">       [4, 0, 1, 2, 3, 4]])</span><br></pre></td></tr></table></figure>
+然后再使用转置，使用np.transpose方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tuple_to_array &#x3D; np.array(np.where(c&gt;3))</span><br><span class="line">np.transpose(tuple_to_array)</span><br><span class="line">array([[0, 4],</span><br><span class="line">       [1, 0],</span><br><span class="line">       [1, 1],</span><br><span class="line">       [1, 2],</span><br><span class="line">       [1, 3],</span><br><span class="line">       [1, 4]])</span><br></pre></td></tr></table></figure>
+<h1 id="Numpy数组"><a href="#Numpy数组" class="headerlink" title="Numpy数组"></a>Numpy数组</h1></li>
 </ol>
 
       
@@ -181,14 +177,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/16/python-day4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/09/python-day18/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-Numpy/" rel="tag">python Numpy</a></li></ul>
 
 
     </footer>
@@ -199,19 +195,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/18/python-day5/" class="article-nav-link">
+      <a href="/2020/03/13/python-day19/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            python_day5_list和tuplesc使用案例
+            python_day19
           
         </div>
       </a>
     
     
-      <a href="/2020/02/15/python-day3/" class="article-nav-link">
+      <a href="/2020/03/09/python-day17/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">python_day3</div>
+        <div class="article-nav-title">python_day17</div>
       </a>
     
   </nav>

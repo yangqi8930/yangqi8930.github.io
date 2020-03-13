@@ -65,6 +65,301 @@
     
     
     
+    <article id="post-python-day9" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/22/python-day9/"
+    >python_day9_python正则表达式</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/22/python-day9/" class="article-date">
+  <time datetime="2020-02-22T10:22:59.000Z" itemprop="datePublished">2020-02-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">python 正则表达式</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Python-之正则表达式"><a href="#Python-之正则表达式" class="headerlink" title="Python 之正则表达式"></a>Python 之正则表达式</h1>
+      
+      <a class="article-more-link" href="/2020/02/22/python-day9/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-day8" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/20/python-day8/"
+    >python_day8_类型函数和类相关函数</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/20/python-day8/" class="article-date">
+  <time datetime="2020-02-20T07:35:58.000Z" itemprop="datePublished">2020-02-20</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Python之16个类型函数和10个类对象相关的内置函数"><a href="#Python之16个类型函数和10个类对象相关的内置函数" class="headerlink" title="Python之16个类型函数和10个类对象相关的内置函数"></a>Python之16个类型函数和10个类对象相关的内置函数</h1><h2 id="类型函数"><a href="#类型函数" class="headerlink" title="类型函数"></a>类型函数</h2><h3 id="1-bool-x-：测试一个对象是True还是False"><a href="#1-bool-x-：测试一个对象是True还是False" class="headerlink" title="1. bool([x])：测试一个对象是True还是False"></a>1. bool([x])：测试一个对象是True还是False</h3><p>print(bool([0,0,0]))</p>
+<h3 id="2-bytes-source-encoding-errors"><a href="#2-bytes-source-encoding-errors" class="headerlink" title="2. bytes([source[,encoding[,errors]]])"></a>2. bytes([source[,encoding[,errors]]])</h3><p>s = “apple”<br>print(bytes(s,encoding=’utf-8’))</p>
+<h3 id="3-str-object-’’-：将字符类型、数值类型等转换为字符串类型："><a href="#3-str-object-’’-：将字符类型、数值类型等转换为字符串类型：" class="headerlink" title="3. str(object=’’)：将字符类型、数值类型等转换为字符串类型："></a>3. str(object=’’)：将字符类型、数值类型等转换为字符串类型：</h3><p>print(str(100))</p>
+<h3 id="4-chr-i-：查看十进制整数对应的ASCII字符："><a href="#4-chr-i-：查看十进制整数对应的ASCII字符：" class="headerlink" title="4. chr(i)：查看十进制整数对应的ASCII字符："></a>4. chr(i)：查看十进制整数对应的ASCII字符：</h3><p>print(chr(65))</p>
+<h3 id="5-ord-c-：查看某个ASCII字符对应的十进制数"><a href="#5-ord-c-：查看某个ASCII字符对应的十进制数" class="headerlink" title="5. ord(c)：查看某个ASCII字符对应的十进制数"></a>5. ord(c)：查看某个ASCII字符对应的十进制数</h3><p>print(ord(‘A’))</p>
+<h3 id="6-dict-：创建数据字典：（见day6笔记第一条）"><a href="#6-dict-：创建数据字典：（见day6笔记第一条）" class="headerlink" title="6. dict()：创建数据字典：（见day6笔记第一条）"></a>6. dict()：创建数据字典：（见day6笔记第一条）</h3><h3 id="7-object-：返回一个根对象，他是所有类的基类"><a href="#7-object-：返回一个根对象，他是所有类的基类" class="headerlink" title="7. object()：返回一个根对象，他是所有类的基类"></a>7. object()：返回一个根对象，他是所有类的基类</h3><p>o = object()<br>print(type(o))</p>
+<h3 id="8-int-x-：int-x-base-10-，x可能为字符串或数值，将x转换为一个整数"><a href="#8-int-x-：int-x-base-10-，x可能为字符串或数值，将x转换为一个整数" class="headerlink" title="8. int(x)：int(x,base =10)，x可能为字符串或数值，将x转换为一个整数"></a>8. int(x)：int(x,base =10)，x可能为字符串或数值，将x转换为一个整数</h3><p>int(‘12’)<br>int(‘12’,16) # 将字符’12’转换为16进制的整数。</p>
+<h3 id="9-float-x-：将一个字符串或整数转换为浮点数"><a href="#9-float-x-：将一个字符串或整数转换为浮点数" class="headerlink" title="9. float(x)：将一个字符串或整数转换为浮点数"></a>9. float(x)：将一个字符串或整数转换为浮点数</h3><p>float(‘12’)</p>
+<h3 id="10-frozenset-iterable-：创建一个不可修改的冻结集合，一旦创建不允许增删元素。"><a href="#10-frozenset-iterable-：创建一个不可修改的冻结集合，一旦创建不允许增删元素。" class="headerlink" title="10. frozenset([iterable])：创建一个不可修改的冻结集合，一旦创建不允许增删元素。"></a>10. frozenset([iterable])：创建一个不可修改的冻结集合，一旦创建不允许增删元素。</h3><p>s = frozenset([1,1,3,2,3])<br>print(s)</p>
+<h3 id="11-list-iterable-：返回可变序列类型：列表"><a href="#11-list-iterable-：返回可变序列类型：列表" class="headerlink" title="11. list([iterable])：返回可变序列类型：列表"></a>11. list([iterable])：返回可变序列类型：列表</h3><p>s = {1,2,3}<br>print(list(s))</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-day7" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/20/python-day7/"
+    >python_day7_运算相关函数</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/20/python-day7/" class="article-date">
+  <time datetime="2020-02-20T02:19:14.000Z" itemprop="datePublished">2020-02-20</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"><a href="#Python之数学运算、逻辑运算和进制转化相关的16个内置函数" class="headerlink" title="Python之数学运算、逻辑运算和进制转化相关的16个内置函数"></a>Python之数学运算、逻辑运算和进制转化相关的16个内置函数</h1>
+      
+      <a class="article-more-link" href="/2020/02/20/python-day7/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-day6" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/19/python-day6/"
+    >python_day6_dict和set操作案例</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/19/python-day6/" class="article-date">
+  <time datetime="2020-02-19T03:49:18.000Z" itemprop="datePublished">2020-02-19</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="dict-和-set-的基本操作和经典案例（To-be-continued…）"><a href="#dict-和-set-的基本操作和经典案例（To-be-continued…）" class="headerlink" title="dict 和 set 的基本操作和经典案例（To be continued…）"></a>dict 和 set 的基本操作和经典案例（To be continued…）</h1>
+      
+      <a class="article-more-link" href="/2020/02/19/python-day6/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-python-day5" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -506,82 +801,13 @@
 
 </article>
     
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/12/hello-world/"
-    >Hello World</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/12/hello-world/" class="article-date">
-  <time datetime="2020-02-12T02:57:47.528Z" itemprop="datePublished">2020-02-12</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. </p>
-      
-      <a class="article-more-link" href="/2020/02/12/hello-world/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>
