@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">501字</span>
+            <span class="post-count">508字</span>
         </span>
     </span>
 
@@ -99,7 +99,8 @@
       
 
       
-      <h1 id="is-判断两个对象的标识号是否相等"><a href="#is-判断两个对象的标识号是否相等" class="headerlink" title="is 判断两个对象的标识号是否相等"></a>is 判断两个对象的标识号是否相等</h1><p>python中使用id()函数获取对象的标识号</p>
+      <h1 id="相等性使用总结"><a href="#相等性使用总结" class="headerlink" title="相等性使用总结"></a>相等性使用总结</h1><a id="more"></a>
+<h1 id="is-判断两个对象的标识号是否相等"><a href="#is-判断两个对象的标识号是否相等" class="headerlink" title="is 判断两个对象的标识号是否相等"></a>is 判断两个对象的标识号是否相等</h1><p>python中使用id()函数获取对象的标识号</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a &#x3D; [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b &#x3D; [1,2,3]</span><br><span class="line">&gt;&gt;&gt; id(a)</span><br><span class="line">4557470016</span><br><span class="line">&gt;&gt;&gt; id(b)</span><br><span class="line">4557167488</span><br><span class="line">&gt;&gt;&gt; a is b</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
 <p>对于序列型、字典型、d集合型对象，一个对象实例指向另一个对象实例，is 比较才返回True。</p>
 <h1 id="in-用于成员检测"><a href="#in-用于成员检测" class="headerlink" title="in 用于成员检测"></a>in 用于成员检测</h1><p>· 如果元素 i 是 s 的成员，则 i in s 为True。<br>· 如果 i 不是 s 的成员，则返回False，也就是 i not in s 为True。<br>对于字符串类型， i in s 为True ，i意味着 i 是 s 的子串，也就是 s.find(i) 返回大于 - 的值。</p>
