@@ -95,7 +95,8 @@
       
 
       
-      <h1 id="NumPy-广播机详细解读，10-道练习题和数据集小案例"><a href="#NumPy-广播机详细解读，10-道练习题和数据集小案例" class="headerlink" title="NumPy 广播机详细解读，10 道练习题和数据集小案例"></a>NumPy 广播机详细解读，10 道练习题和数据集小案例</h1><h2 id="广播原则"><a href="#广播原则" class="headerlink" title="广播原则"></a>广播原则</h2><p>多个数组操作时如果能广播到一起，则需满足一定的约束条件。<br>· Numpy首先会比较最靠右的维度，如果最靠右的维度相等或其中一个为1，则认为此维度相等。<br>· 那么，再继续向左比较，如果一直满足，则认为两者兼容。<br>· 最后，分别在对应维度上发生广播，以此补齐直到维度一致。</p>
+      <h1 id="NumPy-广播机详细解读，10-道练习题和数据集小案例"><a href="#NumPy-广播机详细解读，10-道练习题和数据集小案例" class="headerlink" title="NumPy 广播机详细解读，10 道练习题和数据集小案例"></a>NumPy 广播机详细解读，10 道练习题和数据集小案例</h1><a id="more"></a>
+<h2 id="广播原则"><a href="#广播原则" class="headerlink" title="广播原则"></a>广播原则</h2><p>多个数组操作时如果能广播到一起，则需满足一定的约束条件。<br>· Numpy首先会比较最靠右的维度，如果最靠右的维度相等或其中一个为1，则认为此维度相等。<br>· 那么，再继续向左比较，如果一直满足，则认为两者兼容。<br>· 最后，分别在对应维度上发生广播，以此补齐直到维度一致。</p>
 <h2 id="Numpy-练习题"><a href="#Numpy-练习题" class="headerlink" title="Numpy 练习题"></a>Numpy 练习题</h2><h3 id="返回有规律的数组"><a href="#返回有规律的数组" class="headerlink" title="返回有规律的数组"></a>返回有规律的数组</h3><p>已知数组：<br><code>a = np.array([1,2,3])</code><br>返回数组：<br><code>array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.array([1,2,3])</span><br><span class="line">np.hstack((np.repeat(a,3),np.tile(a,3)))</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])</span><br></pre></td></tr></table></figure>
 <h3 id="python实现向量化"><a href="#python实现向量化" class="headerlink" title="python实现向量化"></a>python实现向量化</h3><p>借助Numpy的vectorize实现操作向量化。<br>原生的Python列表不支持向量化操作，两个向量相加默认不是逐个元素相加：</p>
