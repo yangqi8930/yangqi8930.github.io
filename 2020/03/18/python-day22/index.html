@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    python_day22_Pandas |  SuperMario
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/mario3.jpeg" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-python-day22" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  python_day22_Pandas
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/18/python-day22/" class="article-date">
+  <time datetime="2020-03-18T08:15:30.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.8k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Pandas读写文件5类问题及30个参数和案例使用"><a href="#Pandas读写文件5类问题及30个参数和案例使用" class="headerlink" title="Pandas读写文件5类问题及30个参数和案例使用"></a>Pandas读写文件5类问题及30个参数和案例使用</h1><a id="more"></a>
+<h2 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h2><h3 id="filepathorbuffer"><a href="#filepathorbuffer" class="headerlink" title="filepathorbuffer"></a>filepathorbuffer</h3><p>数据输入路径，可以是文件路径，也可以是URL，或者实现read方法的任意对象。<br>如下经典的数据集iris，直接g通过URL获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">pd.read_csv(&#39;https:&#x2F;&#x2F;archive.ics.uci.edu&#x2F;ml&#x2F;machine-learning-databases&#x2F;iris&#x2F;iris.data&#39;)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">     5.1  3.5  1.4  0.2     Iris-setosa</span><br><span class="line">0    4.9  3.0  1.4  0.2     Iris-setosa</span><br><span class="line">1    4.7  3.2  1.3  0.2     Iris-setosa</span><br><span class="line">2    4.6  3.1  1.5  0.2     Iris-setosa</span><br><span class="line">3    5.0  3.6  1.4  0.2     Iris-setosa</span><br><span class="line">4    5.4  3.9  1.7  0.4     Iris-setosa</span><br><span class="line">..   ...  ...  ...  ...             ...</span><br><span class="line">144  6.7  3.0  5.2  2.3  Iris-virginica</span><br><span class="line">145  6.3  2.5  5.0  1.9  Iris-virginica</span><br><span class="line">146  6.5  3.0  5.2  2.0  Iris-virginica</span><br><span class="line">147  6.2  3.4  5.4  2.3  Iris-virginica</span><br><span class="line">148  5.9  3.0  5.1  1.8  Iris-virginica</span><br></pre></td></tr></table></figure>
+<p>下载时可能会报错，这个错误是因为Python 2.7.9 之后引入了一个新特性，当你使用urllib.urlopen一个 https 的时候会验证一次 SSL证书。当目标使用的是自签名的证书时就会报urllib.error.URLError错误。<br>按照如下方式设置一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import ssl</span><br><span class="line">ssl._create_default_https_context &#x3D; ssl._create_unverified_context</span><br><span class="line">response &#x3D; urllib.request.urlopen(&#39;https:&#x2F;&#x2F;www.python.org&#39;)</span><br><span class="line">print(response.read().decode(&#39;utf-8&#39;))</span><br></pre></td></tr></table></figure>
+<h3 id="sep"><a href="#sep" class="headerlink" title="sep"></a>sep</h3><p>数据文件的分隔符，默认为逗号。<br>注意：如果分割字符长度大于1，且不是\s+ ，启动 Python引擎解析。<br>如下举例：test.csv文件分割符为\t，如果使用sep默认的逗号分隔符，读入后的数据混为一体。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 创建并保存数据</span><br><span class="line">In [1]: d &#x3D; &#123;&#39;id&#39;:[1,2],&#39;name&#39;:[&#39;gz&#39;,&#39;lh&#39;],&#39;age&#39;:[10,12]&#125;</span><br><span class="line">In [2]: df &#x3D; pd.DataFrame(d)</span><br><span class="line">In [3]: df.to_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\t&#39;)</span><br><span class="line"></span><br><span class="line">#读取数据</span><br><span class="line">In [4]: df &#x3D; pd.read_csv(&#39;test.csv&#39;)</span><br><span class="line">In [5]: df</span><br><span class="line">Out[5]:</span><br><span class="line">  \tid\tname\tage</span><br><span class="line">0    0\t1\tgz\t10</span><br><span class="line">1    1\t2\tlh\t12</span><br></pre></td></tr></table></figure>
+<p>sep必须设置为’\t’，数据分割才会正常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\t&#39;)</span><br><span class="line">df</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">   Unnamed: 0  id name  age</span><br><span class="line">0           0   1   gz   10</span><br><span class="line">1           1   2   lh   12</span><br></pre></td></tr></table></figure>
+<h3 id="delimiter"><a href="#delimiter" class="headerlink" title="delimiter"></a>delimiter</h3><p>分隔符的另一个名字，与sep功能相似。</p>
+<h3 id="delim-whitespace"><a href="#delim-whitespace" class="headerlink" title="delim_whitespace"></a>delim_whitespace</h3><p>0.18版本后新加参数，默认为False，设置为True时，表示分割符为空白字符，可以是一个空格，两<br>个空格，或者\t等。</p>
+<h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p>设置倒入DataFrame的列名称，默认为’infer’，注意它与names参数的微妙关系。</p>
+<h3 id="names"><a href="#names" class="headerlink" title="names"></a>names</h3><p>没被赋值时，header 会被 infer 为 0，即选取数据文件的第一行作为列名。<br>当 names 被赋值，header 没被赋值时会被 infer为None。如果都赋值，就会实现两个参数的<br>组合功能。</p>
+<h3 id="index-col"><a href="#index-col" class="headerlink" title="index_col"></a>index_col</h3><p>index_col参数表示使用哪个或者哪些列作为index。如下，当设置index_col为id列是，indexz变为id值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [1]: df &#x3D; pd.read_csv(&#39;test.csv&#39;,delim_whitespace&#x3D;True,index_col&#x3D;1)</span><br><span class="line"></span><br><span class="line">In [2]: df</span><br><span class="line">Out[2]:</span><br><span class="line">   id name  age</span><br><span class="line">1   0   gz   10</span><br><span class="line">2   1   lh   12</span><br></pre></td></tr></table></figure>
+<h3 id="usecols"><a href="#usecols" class="headerlink" title="usecols"></a>usecols</h3><p>usecols 参数用于选取数据文件的哪些列到DataFrame中。<br>如下所示，我们只想使用源数据文件的id和age两列，那么可以为usecols参数赋值为[‘id’,’name’]:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,delim_whitespace&#x3D;True,usecols&#x3D;[&#39;id&#39;,&#39;name&#39;])</span><br><span class="line">df</span><br><span class="line">   id name</span><br><span class="line">0   1   gz</span><br><span class="line">1   2   lh</span><br></pre></td></tr></table></figure>
+<h3 id="mangle-dupe-cols"><a href="#mangle-dupe-cols" class="headerlink" title="mangle_dupe_cols"></a>mangle_dupe_cols</h3><p>实际生产用的数据会很复杂，有时导入的数据会含有重名的列，参数mangle_dupe_cols默认为True，重名的列导入后面多一个.1，如果设置为False，会抛出不支持的异常。</p>
+<h3 id="prefix"><a href="#prefix" class="headerlink" title="prefix"></a>prefix</h3><p>prefix参数，当导入的数据没有header时，设置此参数会自动加一个前缀。比如，设置参数为col时，列名变为如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39; &#39;,prefix&#x3D;&#39;col&#39;,header&#x3D;None)</span><br><span class="line">   col0        col1 col2  col3 col4</span><br><span class="line">0   NaN  Unnamed: 0   id  name  age</span><br><span class="line">1   0.0           0    1    gz   10</span><br><span class="line">2   1.0           1    2    lh   12</span><br></pre></td></tr></table></figure>
+<h2 id="通用解析参数"><a href="#通用解析参数" class="headerlink" title="通用解析参数"></a>通用解析参数</h2><h3 id="dtype"><a href="#dtype" class="headerlink" title="dtype"></a>dtype</h3><p>dtype查看每一列的数据类型，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">d &#x3D; &#123;&#39;id&#39;:[1,2],&#39;name&#39;:[&#39;gz&#39;,&#39;lh&#39;],&#39;age&#39;:[10,12]&#125;</span><br><span class="line">df &#x3D; pd.DataFrame(d)</span><br><span class="line">df.to_csv(&#39;test.csv&#39;,sep&#x3D;&#39; &#39;,index&#x3D;False)</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;)</span><br><span class="line">df.dtypes</span><br><span class="line">id       int64</span><br><span class="line">name    object</span><br><span class="line">age      int64</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+<p>如果想修改age列的数据类型为float，在read_csv时可以使用dtype调整，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;,dtype&#x3D;&#123;&#39;age&#39;:float&#125;)</span><br><span class="line">df</span><br><span class="line">   id name   age</span><br><span class="line">0   1   gz  10.0</span><br><span class="line">1   2   lh  12.0</span><br><span class="line">df.dtypes</span><br><span class="line">id        int64</span><br><span class="line">name     object</span><br><span class="line">age     float64</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+<h3 id="engine"><a href="#engine" class="headerlink" title="engine"></a>engine</h3><p>engine参数表示Pandas的解析引擎，m目前有两种：C、Python。默认为C，因为C引擎解析速度更快，但是特性没有Python引擎高。如果使用C引擎没有的特性时，会自动退化为Python引擎。</p>
+<h3 id="converters"><a href="#converters" class="headerlink" title="converters"></a>converters</h3><p>converters实现对列数据的变化操作，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;)</span><br><span class="line">df</span><br><span class="line">   id name  age</span><br><span class="line">0   1   gz   10</span><br><span class="line">1   2   lh   12</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;,converters&#x3D;&#123;&#39;age&#39;:lambda x:1+int(x)&#125;)</span><br><span class="line">df</span><br><span class="line">   id name  age</span><br><span class="line">0   1   gz   11</span><br><span class="line">1   2   lh   13</span><br></pre></td></tr></table></figure>
+<p>完成对age列的数据加1，注意int(x)，此处解析器默认所有列的类型为str，所以需要类型转换一下。</p>
+<h3 id="true-values"><a href="#true-values" class="headerlink" title="true_values"></a>true_values</h3><p>true_values参数指定数据中哪些字符应该被清洗为True，false_values参数指定哪些字符被清洗为False。<br>如下所示，修改原数据文件label列的值为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">d &#x3D; &#123;&#39;id&#39;:[1,2],&#39;name&#39;:[&#39;gz&#39;,&#39;lh&#39;],&#39;age&#39;:[10,12],&#39;label&#39;:[&#39;YES&#39;,&#39;NO&#39;]&#125;</span><br><span class="line">df &#x3D; pd.DataFrame(d)</span><br><span class="line">df.to_csv(&#39;test_label.csv&#39;,index&#x3D;False)</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test_label.csv&#39;)</span><br><span class="line">df</span><br><span class="line">   id name  age label</span><br><span class="line">0   1   gz   10   YES</span><br><span class="line">1   2   lh   12    NOs</span><br><span class="line">df2 &#x3D; pd.read_csv(&#39;test_label.csv&#39;,true_values&#x3D;[&#39;YES&#39;],false_values&#x3D;[&#39;NO&#39;])</span><br><span class="line">df2</span><br><span class="line">   id name  age  label</span><br><span class="line">0   1   gz   10   True</span><br><span class="line">1   2   lh   12  False</span><br></pre></td></tr></table></figure>
+<h3 id="skip-rows"><a href="#skip-rows" class="headerlink" title="skip_rows"></a>skip_rows</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">skip_rows过滤行，数据文件如下，过滤掉index为0的行，使用skip_rows：</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;)</span><br><span class="line">df</span><br><span class="line">   id name  age</span><br><span class="line">0   1   gz   10</span><br><span class="line">1   2   lh   12</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;,skiprows&#x3D;[0])</span><br><span class="line">df</span><br><span class="line">   1  gz  10</span><br><span class="line">0  2  lh  12</span><br></pre></td></tr></table></figure>
+<p>但是我们一般不会想过滤列名称这一行，所以过滤行一般从1开始。</p>
+<h3 id="skip-footer"><a href="#skip-footer" class="headerlink" title="skip_footer"></a>skip_footer</h3><p>skip_footer从文件末尾过滤行，解析器退化为Python。因为C解析器没有这个特性。</p>
+<h3 id="nrows"><a href="#nrows" class="headerlink" title="nrows"></a>nrows</h3><p>nrows参数设置一次性读入的文件行数，它在读入大文件时很有用，比如16G内存的PC无法容纳几百G的大文件。<br>此参数可以结合skiprows使用，比如我想从原始文件的第2行（文件第一行为列名）开始一次读入500行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;test.csv&#39;,sep&#x3D;&#39;\s+&#39;,nrows&#x3D;500)</span><br></pre></td></tr></table></figure>
+<p>每次读取一个文件片(chunk)，直到w处理完成整个文件。</p>
+<h2 id="空值处理相关参数"><a href="#空值处理相关参数" class="headerlink" title="空值处理相关参数"></a>空值处理相关参数</h2><h3 id="na-values"><a href="#na-values" class="headerlink" title="na_values"></a>na_values</h3><p>na_values参数可以配置哪些值需要处理成Na/Na,类型为字典，键指明哪一列，值为看做Na/NaN的<br>字符。<br>假设我们的数据文件如下，date列中有一个#值，我们想把他处理为NaN值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">d &#x3D; &#123;&#39;id&#39;:[1,2],&#39;name&#39;:[&#39;gz&#39;,&#39;lh&#39;],&#39;age&#39;:[10,12],&#39;date&#39;:[&#39;2020-03-10&#39;,&#39;#&#39;]&#125;</span><br><span class="line">df &#x3D; pd.DataFrame(d)</span><br><span class="line">df.to_csv(&#39;test_date.csv&#39;,sep&#x3D;&#39; &#39;,index&#x3D;False)</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test_date.csv&#39;,sep&#x3D;&#39;\s+&#39;)</span><br><span class="line">df &#x3D; pd.read_csv(&#39;test_date.csv&#39;,sep&#x3D;&#39;\s+&#39;,na_values&#x3D;[&#39;#&#39;])</span><br><span class="line">df</span><br><span class="line">   id name  age        date</span><br><span class="line">0   1   gz   10  2020-03-10</span><br><span class="line">1   2   lh   12         NaN</span><br></pre></td></tr></table></figure>
+<p>keep_default_na 是和 na_values 搭配的，如果前者为 True，则 na_values 被解析为 Na/NaN 的字符除了用户设置外，还包括默认值。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/18/python-day22/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-Pandas/" rel="tag">python Pandas</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/03/17/python-day21/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">python_day21_Numpy广播机制</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: '/images/mario3.jpeg',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        氧气
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/mario3.jpeg" alt="SuperMario"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['Let&#39;s Play','',''],
+    startDelay: 0,
+    typeSpeed: 200,
+    loop: true,
+    backSpeed: 100,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>
