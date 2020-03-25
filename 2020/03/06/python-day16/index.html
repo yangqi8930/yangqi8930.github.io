@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">762字</span>
+            <span class="post-count">772字</span>
         </span>
     </span>
 
@@ -99,7 +99,8 @@
       
 
       
-      <h1 id="装饰器的本质"><a href="#装饰器的本质" class="headerlink" title="装饰器的本质"></a>装饰器的本质</h1><h2 id="装饰器的应用广泛"><a href="#装饰器的应用广泛" class="headerlink" title="装饰器的应用广泛"></a>装饰器的应用广泛</h2><p>Python 中使用 @函数名字，放在某些函数上面，起到增强它们功能的作用。装饰器会使得代码更加简洁，代码的复用性大大提升。<br>因此，装饰器被广泛使用。Python 中到处都能看到装饰器的身影。不光在 Python，其他语言如 Java 中，装饰器被称作注解，也被应用广泛。<br>Python 前端最流行的框架之一 Flask，URL 地址和 controller 层的映射处理函数，就是使用装饰器。</p>
+      <h1 id="装饰器的本质"><a href="#装饰器的本质" class="headerlink" title="装饰器的本质"></a>装饰器的本质</h1><p><strong><em>装饰器的本质就是函数</em></strong></p>
+<h2 id="装饰器的应用广泛"><a href="#装饰器的应用广泛" class="headerlink" title="装饰器的应用广泛"></a>装饰器的应用广泛</h2><p>Python 中使用 @函数名字，放在某些函数上面，起到增强它们功能的作用。装饰器会使得代码更加简洁，代码的复用性大大提升。<br>因此，装饰器被广泛使用。Python 中到处都能看到装饰器的身影。不光在 Python，其他语言如 Java 中，装饰器被称作注解，也被应用广泛。<br>Python 前端最流行的框架之一 Flask，URL 地址和 controller 层的映射处理函数，就是使用装饰器。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line">@app.route(&#39;&#x2F;&#39;)</span><br><span class="line">def index():</span><br><span class="line">    return &quot;hello world&quot;</span><br></pre></td></tr></table></figure>
 <p>URL路径/与处理函数建立映射关系，正是通过装饰器<br>app.route控制层处理响应前端，并返回字符串 hello world 到前端界面。<br>python 支持异步编程，从中也能看到装饰器的身影。</p>
 <h2 id="call-print-装饰器"><a href="#call-print-装饰器" class="headerlink" title="call_print 装饰器"></a>call_print 装饰器</h2><p>call_print 装饰器实现效果，与下面调用方式，实现的效果是等效的。<br>首先，定义函数 call_print，它的入参 f 为一个函数，它里面内嵌一个函数 g，并返回函数 g：</p>

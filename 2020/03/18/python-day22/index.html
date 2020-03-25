@@ -59,7 +59,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">3k字</span>
+            <span class="post-count">3.1k字</span>
         </span>
     </span>
 
@@ -161,12 +161,14 @@
 <p>此时，读入数据文件，会报异常:<br><code>ParserError: Error tokenizing data. C error: Expected 5 fields in line 3, saw 6</code><br>在小样本读取时，这个错误很快就能发现。<br>但是在读取大数据文件时，假如读取 3 个小时，最后几行出现了这类错误，就很闹心！<br>所以稳妥起见，一般读取大文件时，会将 error_bad_lines 设置为 False，也就是剔除此行，同时使用 warn_bad_lines 设置为True，打印剔除的这行。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [150]: df &#x3D; pd.read_csv(&#39;***.csv&#39;,sep&#x3D;&#39;\s+&#39;,error_bad_lines&#x3D;False)          </span><br><span class="line">b&#39;Skipping line 3: expected 5 fields, saw 6\n&#39;</span><br><span class="line"></span><br><span class="line">In [151]: df               </span><br><span class="line">Out[151]: </span><br><span class="line">   id  id.1   age label       date</span><br><span class="line">0   1  &#39;gz&#39;  10.8   YES  1,090,001</span><br></pre></td></tr></table></figure>
 <p>可以看到输出的警告信息：<br><code>Skipping line 3: expected 5 fields, saw 6</code></p>
-<h3 id="warn-bad-lines"><a href="#warn-bad-lines" class="headerlink" title="warn_bad_lines"></a>warn_bad_lines</h3><p>如果 error_bad_lines 设置为 False，并且 warn_bad_lines 设置为 True，那么所有的“bad lines”将会被输出（只能在 C 解析器下使用）。<br>以上就是读 CSV 文件的所有参数及对应演示。</p>
+<h3 id="warn-bad-lines"><a href="#warn-bad-lines" class="headerlink" title="warn_bad_lines"></a>warn_bad_lines</h3><p>如果 error_bad_lines 设置为 False，并且 warn_bad_lines 设置为 True，那么所有的“bad lines”将会被输出（只能在 C 解析器下使用）。<br>以上就是读 CSV 文件的所有参数说明。</p>
 <h2 id="案例分析："><a href="#案例分析：" class="headerlink" title="案例分析："></a>案例分析：</h2><p>对于动辄几十或者几百个G的数据，在读取这么大数据的时候，我们是否可以随机选取一部分小数据，然后读入内存，快速了解数据和开展EDA？<br>使用Pandas的skiprows和概率知识，就可以做到：<br>如下，读取某100G大小的big_data.csv数据：</p>
 <ol>
 <li>使用skiprows参数；</li>
 <li>x&gt;0确保首行读入；</li>
-<li>np.random.rand()&gt;0.01表示99%的数据都会被随机过滤掉。也就是全部数据的1%才有机会选入内存中。</li>
+<li>np.random.rand()&gt;0.01表示99%的数据都会被随机过滤掉。也就是全部数据的1%才有机会选入内存中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">df &#x3D; pd.read_csv(&quot;big_data.csv&quot;, </span><br><span class="line">skiprows &#x3D; </span><br><span class="line">lambda x: x&gt;0 and np.random.rand() &gt; 0.01)</span><br><span class="line"></span><br><span class="line">print(&quot;The shape of the df is &#123;&#125;. </span><br><span class="line">It has been reduced 100 times!&quot;.format(df.shape))</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 
       
@@ -250,6 +252,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/03/23/python-day23/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            python_day23_数据清洗和准备
+          
+        </div>
+      </a>
     
     
       <a href="/2020/03/17/python-day21/" class="article-nav-link">
