@@ -59,7 +59,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">65字</span>
+            <span class="post-count">453字</span>
         </span>
     </span>
 
@@ -95,11 +95,14 @@
       
 
       
-      <h1 id="python数据分析可视化"><a href="#python数据分析可视化" class="headerlink" title="python数据分析可视化"></a>python数据分析可视化</h1><p>导入matplotlib包后，可以设置如下代码，解决mac电脑中文显示乱码的问题。</p>
+      <h1 id="python-绘图总结"><a href="#python-绘图总结" class="headerlink" title="python 绘图总结"></a>python 绘图总结</h1><p>导入matplotlib包后，可以设置如下代码，解决mac电脑中文显示乱码的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[&#39;font.family&#39;]&#x3D;&#39;Arial Unicode MS&#39;</span><br><span class="line">plt.rcParams[&#39;font.sans-serif&#39;] &#x3D; [&#39;SimHei&#39;]</span><br><span class="line">plt.rcParams[&#39;axes.unicode_minus&#39;] &#x3D; False</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-
-
+<h2 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h2><p>绘图语句：<br><code>plt.ple(x, explode, labels, colors, autopct=, pctdistance, shadow, startangle, radius, wedgeprops, textprops, center, )</code><br>参数详解：<br>labels：标签<br>colors：颜色<br>autopct：百分比<br>pctdistance：百分比标签与圆心距离<br>shadow：是否添加饼图阴影效果<br>labeldistance：设置各扇形标签与圆心距离<br>startangle：设置饼图的初始摆放角度<br>radius：设置饼图半径大小<br>counterclock：是否逆时针呈现<br>wedgeprops：设置饼图内外边界的属性<br>textprops：设置饼图中文本属性<br>center：设置中心位置</p>
+<h2 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h2><p><code>plt.bar(x, y, width, bottom, color, linewidth, tick_label, align)</code><br>x：指定x轴上数值<br>y：指定y轴上数值<br>width：指定条形图宽度<br>color：条形图的填充色<br>edge：条形图的边框色<br>linewidth：条形图边框宽度<br>tick_label：条形图的刻度标签<br>align：指定x轴上的对齐方式</p>
+<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><p><code>plt.hist(x, bins, range, normed, cumulative, bottom, align, rwidth, color, edgecolor, label)</code><br>x：数据<br>bins：条形个数<br>range：上下界<br>normed：是否将频数转换为频率<br>cumulative：是否计算累计频率<br>bottom：为直方图的每个条形添加基准线，默认为0<br>align：对齐方式<br>rwidth：条形的d宽度<br>color：填充色<br>edgecolor：边框颜色<br>label：标签</p>
+<h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2><p><code>plt.scatter(x, y, s, c, maker, cmap, norm, alpha, linewidths, edgecolor, label)</code><br>x：x数据<br>y：y轴数据<br>s：散点大小<br>c：散点颜色<br>maker：散点图形状<br>cmap：指定某个colormap值，该参数一般不用，用默认值<br>alpha：散点的透明度<br>linewidth：散点边界线的宽度<br>edgecolors：设置散点边界线的颜色</p>
 
       
       <!-- reward -->
